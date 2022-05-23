@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2022_05_23_062629) do
     t.string "last_name"
     t.string "first_name"
     t.date "date_of_birth"
-    t.string "sex"
+    t.integer "sex"
     t.string "blood_type"
     t.integer "height"
     t.integer "weight"
