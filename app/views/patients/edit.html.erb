@@ -1,0 +1,16 @@
+<h1> Update Personal Info</h1>
+<%= simple_form_for(@patient) do |f| %>
+  <%= f.input :last_name %>
+  <%= f.input :first_name %>
+  <%= f.input :date_of_birth, start_year: Time.now.year - 100 %>
+  <%= f.input :sex, collection: Patient.sexes.keys %>
+  <%= f.input :blood_type,:collection => %w[A+ B+ AB+ O+ A- B- AB- O-] %>
+  <%= f.input :height, label: "Height (cm)"%>
+  <%= f.input :weight, label: "Weight (kg)" %>
+  <%= f.input :allergies %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.input :emergency_contact %>
+  <%= f.input :smoker %>
+  <%= f.submit value: "Save"%>
+<% end %>
