@@ -10,7 +10,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Useless Button", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Medical Records", patient_medical_records_path(current_user.patient), class: "nav-link" %>
