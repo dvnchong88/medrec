@@ -7,16 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+User.destroy_all
 MedicalRecord.destroy_all
 Patient.destroy_all
 Doctor.destroy_all
+puts "creating users"
+users = []
+5.times do
+  user = User.create!(
+    email: Faker::Internet.email,
+    password: '123456',
+    user_type: 0
+  )
+  users << user
+end
+puts "there are now #{User.count} users."
+
 puts "creating patients"
-10.times do
+users.each do |user|
   Patient.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    # email: Faker::Internet.email,
-    # password: '123456',
     date_of_birth: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
     sex: Faker::Gender.type,
     weight: Faker::Number.between(from: 45, to: 145),
@@ -26,7 +37,33 @@ puts "creating patients"
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.cell_phone,
     emergency_contact: Faker::Relationship.familial,
-    smoker: Faker::Boolean.boolean
+    smoker: Faker::Boolean.boolean,
+    user: user
+  ) end
+
+puts "there are now #{Patient.count} patients."
+
+users = []
+5.times do
+  user = User.create!(
+    email: Faker::Internet.email,
+    password: '123456',
+    user_type: 1
+  )
+  users << user
+end
+puts "there are now #{User.count} users."
+
+puts "creating doctors"
+specialty = %w[Homeopathic Endocronolgy OBGYN Cardiology Dermotology General Surgery]
+users.each do |user|
+  Doctor.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    specialty: specialty.sample,
+    clinic_name: "#{Faker::FunnyName.two_word_name} Hospital",
+    license_number: Faker::IDNumber.invalid,
+    user: user
   )
 end
-puts "there are now #{Patient.count} patients."
+puts "there are now #{Doctor.count} doctors."
