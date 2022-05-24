@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_one :patient
   has_one :doctor
   enum user_type: { patient: 0, doctor: 1 }
+  has_one :patient
+  has_one :doctor
 end
