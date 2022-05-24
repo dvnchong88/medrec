@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum user_type: { patient: 0, doctor: 1 }
+  has_one :patient
+  has_one :doctor
 end
