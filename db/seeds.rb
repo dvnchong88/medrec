@@ -39,7 +39,8 @@ users.each do |user|
     emergency_contact: Faker::Relationship.familial,
     smoker: Faker::Boolean.boolean,
     user: user
-  ) end
+  )
+end
 
 puts "there are now #{Patient.count} patients."
 
