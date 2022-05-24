@@ -6,5 +6,17 @@ class User < ApplicationRecord
   has_one :patient
   has_one :doctor
   enum user_type: { patient: 0, doctor: 1 }
+  after_create :create_profile
 
+  private
+
+  def create_profile
+    if patient?
+      patient = Patient.new(user: self)
+      patient.save(validate: false)
+    else
+      doctor = Doctor.new(user: self)
+      doctor.save(validate: false)
+    end
+  end
 end
