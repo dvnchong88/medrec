@@ -15,6 +15,7 @@ class PatientsController < ApplicationController
 
   def edit
     @patient = Patient.find(params[:id])
+    authorize @patient
   end
 
   def update
@@ -28,6 +29,7 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find(params[:id])
+    authorize @patient
   end
 
   private

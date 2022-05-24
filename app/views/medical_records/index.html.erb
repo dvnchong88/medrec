@@ -1,1 +1,6 @@
 <h1>Medical Records will be displayed on this page</h1>
+<% @medical_records.each do |medical_record| %>
+  <%= medical_record %>
+<% end %>
+
+<%= link_to "Create", new_patient_medical_record_path(current_user.patient) %>
