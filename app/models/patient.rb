@@ -4,7 +4,6 @@ class Patient < ApplicationRecord
   has_one_attached :photo
   belongs_to :user
 
-
   validates :first_name, presence: true
 
 end
