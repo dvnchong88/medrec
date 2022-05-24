@@ -5,12 +5,13 @@ class MedicalRecordsController < ApplicationController
 
   def new
     @medical_record = MedicalRecord.new
+    @patient = Patient.find(params[:patient_id])
     authorize @medical_record
   end
 
   def create
     @medical_record = MedicalRecord.new(record_params)
-    @medical_record.patient = current_user
+    @medical_record.patient = Patient.find(params[:patient_id])
     authorize @medical_record
 
     if @medical_record.save
@@ -46,6 +47,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :photos, :creator, :prescribed_medications)
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :photos, :creator, :date, :prescribed_medications)
   end
 end
