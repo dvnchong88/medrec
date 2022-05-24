@@ -9,4 +9,12 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+  object-fit: cover;
+}
+
+
+.nav-link {
+  background: #1FB7CB;
+  border-radius: 9px;
+  color: white;
 }
