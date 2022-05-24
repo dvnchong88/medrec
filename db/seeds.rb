@@ -24,12 +24,13 @@ end
 puts "there are now #{User.count} users."
 
 puts "creating patients"
+sex = (0..2).to_a
 users.each do |user|
   Patient.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     date_of_birth: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
-    sex: Faker::Gender.type,
+    sex: sex.sample,
     weight: Faker::Number.between(from: 45, to: 145),
     height: Faker::Number.between(from: 120, to: 200),
     allergies: Faker::Food.ingredient,
