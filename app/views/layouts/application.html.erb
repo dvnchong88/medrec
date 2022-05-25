@@ -9,11 +9,20 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
-  <body>
-    <% if !current_page?("/") %>
-      <%= render 'shared/navbar' %>
-    <% end %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-  </body>
+  <div class="page-frame-content">
+    <div class="page-frame-header">
+      <% if !current_page?("/") %>
+        <%= render 'shared/navbar' %>
+      <% end %>
+      <%= render 'shared/flashes' %>
+    </div>
+    <div class="page-frame-body">
+      <body>
+        <%= yield %>
+      </body>
+    </div>
+    <div class="page-frame-footer">
+      <%= render 'shared/footer' %>
+    </div>
+  </div>
 </html>
