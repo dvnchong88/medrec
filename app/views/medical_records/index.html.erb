@@ -1,15 +1,26 @@
 <div class="container">
-  <h1>Medical Records will be displayed on this page</h1>
+  <h1>Medical History</h1>
   <% @medical_records.each do |medical_record| %>
-    <div class="medical-records">
-      <div class="medical-records-info">
-        <h3><%= medical_record.date %></h3>
-        <h3>Symptoms:</h3>
-        <p><%= medical_record.symptoms %></p>
-        <h3>Diagnosis: </h3>
-        <p><%= medical_record.diagnosis %></p>
+    <div class="item-flip" on:click={toggleFlip} class:flipped={isFlipped}>
+      <div class="item-flip-inner">
+        <div class="item-flip-front">
+          <div class="item-flip-content">
+            <h3><%= medical_record.date %></h3>
+            <h3>Symptoms: </h3>
+            <p><%= medical_record.symptoms %></p>
+            <h3>Diagnosis: </h3>
+            <p><%= medical_record.diagnosis %></p>
+          </div>
+        </div>
+        <div class="item-flip-back">
+          <div class="item-flip-content d-flex justify-content-center">
+            <% medical_record.photos.each do |photo| %>
+              <%= cl_image_tag photo.key %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
-  <%= link_to "New Medical Record", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary" %>
+  <%= link_to "New Medical Record", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
 </div>
