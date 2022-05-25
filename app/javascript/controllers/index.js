@@ -7,8 +7,3 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 const application = Application.start()
 const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
-
-document.querySelector(".item-flip")
-  .addEventListener("click", (event) => {
-    event.currentTarget.classList.toggle("flipped");
-  });
