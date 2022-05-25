@@ -1,6 +1,6 @@
 class MedicalRecordsController < ApplicationController
   def index
-    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.id))
+    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
   end
 
   def new
@@ -17,7 +17,7 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to "medical_records"
+      redirect_to patient_medical_records_path(@medical_record)
     else
       render :new
     end

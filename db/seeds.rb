@@ -7,25 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-User.destroy_all
 MedicalRecord.destroy_all
 Patient.destroy_all
 Doctor.destroy_all
+User.destroy_all
+
 puts "creating users"
-users = []
+
+patients = []
 5.times do
+  sex = (0..2).to_a
   user = User.create!(
     email: Faker::Internet.email,
     password: '123456',
     user_type: 0
   )
-  users << user
-end
-puts "there are now #{User.count} users."
-
-puts "creating patients"
-sex = (0..2).to_a
-users.each do |user|
   Patient.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -41,24 +37,21 @@ users.each do |user|
     smoker: Faker::Boolean.boolean,
     user: user
   )
+  patients << user
 end
+puts "there are now #{User.count} users."
 
+puts "creating patients"
 puts "there are now #{Patient.count} patients."
 
-users = []
-5.times do
+doctors = []
+specialty = %w[Homeopathic Endocronolgy OBGYN Cardiology Dermotology General Surgery]
+2.times do
   user = User.create!(
     email: Faker::Internet.email,
     password: '123456',
     user_type: 1
   )
-  users << user
-end
-puts "there are now #{User.count} users."
-
-puts "creating doctors"
-specialty = %w[Homeopathic Endocronolgy OBGYN Cardiology Dermotology General Surgery]
-users.each do |user|
   Doctor.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -67,5 +60,23 @@ users.each do |user|
     license_number: Faker::IDNumber.invalid,
     user: user
   )
+  doctors << user
 end
+
+puts "creating doctors"
 puts "there are now #{Doctor.count} doctors."
+
+puts "creating medical records"
+
+patients.each do |user|
+  rand(5...10).times do
+    MedicalRecord.create!(
+      symptoms: "Asthma",
+      diagnosis: "I was diagnosed with high blood pressure today",
+      date: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
+      patient: user.patient,
+      doctor: rand(2).zero? ? nil : doctors.sample.doctor
+    )
+  end
+end
+puts "there are now #{Doctor.count} medical records."

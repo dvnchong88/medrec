@@ -20,6 +20,7 @@ class PatientsController < ApplicationController
 
   def update
     @patient = Patient.find(params[:id])
+    authorize @patient
     if @patient.update(patient_params)
       redirect_to patient_path(@patient), notice: 'Personal Info was successfully updated.'
     else
