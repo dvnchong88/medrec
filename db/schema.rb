@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2022_05_24_075419) do
 
   create_table "medical_records", force: :cascade do |t|
     t.bigint "patient_id", null: false
-    t.bigint "doctor_id", null: false
+    t.bigint "doctor_id"
     t.boolean "creator"
     t.text "symptoms"
     t.text "diagnosis"
