@@ -1,6 +1,6 @@
 class MedicalRecordsController < ApplicationController
   def index
-    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.id))
+    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
   end
 
   def new
@@ -12,10 +12,12 @@ class MedicalRecordsController < ApplicationController
   def create
     @medical_record = MedicalRecord.new(record_params)
     @medical_record.patient = Patient.find(params[:patient_id])
+    @medical_record.doctor = Doctor.first
+    @medical_record.creator = current_user.user_type
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to "medical_records/show"
+      redirect_to patient_medical_records_path(@medical_record)
     else
       render :new
     end
@@ -47,6 +49,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :photos, :creator, :date, :prescribed_medications)
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :photos, :creator, :date, :prescribed_medicine)
   end
 end
