@@ -17,8 +17,7 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to "medical_records/show"
-      raise
+      redirect_to "medical_records"
     else
       render :new
     end
