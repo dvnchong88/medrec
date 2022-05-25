@@ -1,12 +1,26 @@
+require "rqrcode"
+
 class MedicalRecordsController < ApplicationController
   def index
     @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
+    @qr_code = RQRCode::QRCode.new(medical_record)
+    @svg = @qr_code.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      standalone: true,
+      use_path: true
+    )
   end
 
   def new
     @medical_record = MedicalRecord.new
     @patient = Patient.find(params[:patient_id])
     authorize @medical_record
+  end
+
+  def show
+    @medical_record = MedicalRecord.find(params[:id])
   end
 
   def create
@@ -49,6 +63,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, :name, :address, :qr_code, photos: [])
   end
 end
