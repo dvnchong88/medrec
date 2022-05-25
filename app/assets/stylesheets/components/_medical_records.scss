@@ -1,0 +1,19 @@
+.medical-records {
+   /*fixed*/
+   display: flex;
+   flex-direction: column;
+   /*customizable*/
+   height: 300px;
+   width: 100%;
+   max-width: 500px;
+   border-radius: 16px;
+   background-color: white;
+   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.medical-records-info {
+  /*fixed*/
+  overflow: hidden;
+  /*customizable*/
+  padding: 16px;
+}
