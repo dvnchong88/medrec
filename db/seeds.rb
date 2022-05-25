@@ -79,4 +79,9 @@ patients.each do |user|
     )
   end
 end
+
+User.all.each do |user|
+  user.qr_code = "http://localhost:3000/patients/#{user.patient.id}/medical_records" if user.user_type == "patient"
+  user.save
+end
 puts "there are now #{Doctor.count} medical records."
