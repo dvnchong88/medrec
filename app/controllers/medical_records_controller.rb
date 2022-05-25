@@ -3,6 +3,7 @@ require "rqrcode"
 class MedicalRecordsController < ApplicationController
   def index
     @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
+
   end
 
   def new
