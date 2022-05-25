@@ -73,6 +73,9 @@
 }
 
 .item-flip-back {
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
   transform: rotateX(180deg);
 }
 
@@ -87,6 +90,27 @@
 }
 }
 
+.page-frame-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page-frame-header {
+  margin-bottom: 3px;
+}
+
+.page-frame-body {
+  flex-grow: 1;
+  overflow: scroll;
+}
+
+.page-frame-footer {
+  height: 15%;
+  background-color: aqua;
+
 .qr-code {
   position: relative;
+
 }
