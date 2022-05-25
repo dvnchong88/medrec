@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @qr_code = RQRCode::QRCode.new(current_user.qr_code)
+    @qr_code = RQRCode::QRCode.new("http://localhost:3000/")
     @svg = @qr_code.as_svg(
       offset: 0,
       color: '000',
