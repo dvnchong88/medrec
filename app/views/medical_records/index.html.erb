@@ -1,6 +1,15 @@
-<h1>Medical Records will be displayed on this page</h1>
-<% @medical_records.each do |medical_record| %>
-  <%= medical_record.symptoms %>
-<% end %>
-
-<%= link_to "Create", new_patient_medical_record_path(current_user.patient) %>
+<div class="container">
+  <h1>Medical Records will be displayed on this page</h1>
+  <% @medical_records.each do |medical_record| %>
+    <div class="medical-records">
+      <div class="medical-records-info">
+        <h3><%= medical_record.date %></h3>
+        <h3>Symptoms:</h3>
+        <p><%= medical_record.symptoms %></p>
+        <h3>Diagnosis: </h3>
+        <p><%= medical_record.diagnosis %></p>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "New Medical Record", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary" %>
+</div>
