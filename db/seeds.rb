@@ -75,7 +75,7 @@ patients.each do |user|
       diagnosis: "I was diagnosed with high blood pressure today",
       date: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
       patient: user.patient,
-      doctor: rand(2).zero? ? nil : doctors.sample.doctor
+      doctor: doctors.sample.doctor
     )
   end
 end
