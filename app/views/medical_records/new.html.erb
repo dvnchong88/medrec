@@ -1,6 +1,6 @@
 <h1>Add new medical record</h1>
 <div class="container">
-  <%= simple_form_for [@patient, @medical_record] do |f| %>
+  <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
     <%= f.input :date, start_year: Time.now.year - 100 %>
     <%= f.input :symptoms %>
     <%= f.input :diagnosis %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_075419) do
+ActiveRecord::Schema.define(version: 2022_05_25_025408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,14 +57,19 @@ ActiveRecord::Schema.define(version: 2022_05_24_075419) do
 
   create_table "medical_records", force: :cascade do |t|
     t.bigint "patient_id", null: false
+<<<<<<< HEAD
+    t.bigint "doctor_id", null: false
+=======
     t.bigint "doctor_id"
     t.boolean "creator"
+>>>>>>> master
     t.text "symptoms"
     t.text "diagnosis"
     t.string "prescribed_medicine"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "date"
+    t.integer "creator"
     t.index ["doctor_id"], name: "index_medical_records_on_doctor_id"
     t.index ["patient_id"], name: "index_medical_records_on_patient_id"
   end
