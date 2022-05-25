@@ -3,7 +3,7 @@ require "rqrcode"
 class MedicalRecordsController < ApplicationController
   def index
     @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
-    @qr_code = RQRCode::QRCode.new(medical_record)
+    @qr_code = RQRCode::QRCode.new(record_params)
     @svg = @qr_code.as_svg(
       offset: 0,
       color: '000',

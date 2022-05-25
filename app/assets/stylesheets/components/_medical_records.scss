@@ -107,8 +107,10 @@
 }
 
 .page-frame-footer {
-  height: 15%;
-  background-color: aqua;
+  height: 60px;
+  background-color: rgb(198, 235, 235);
+  color: white;
+  link_to {text-decoration:none; background-color:transparent;};
 }
 .qr-code {
   position: relative;
