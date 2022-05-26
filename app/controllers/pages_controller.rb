@@ -9,8 +9,7 @@ class PagesController < ApplicationController
   def dashboard
     if user_signed_in? && current_user.user_type == "patient"
       url = patient_medical_records_url(current_user.patient)
-
-      @qr_code = RQRCode::QRCode.new(patient_medical_records_url(current_user.patient))
+      @qr_code = RQRCode::QRCode.new(url)
       @svg = @qr_code.as_svg(
         offset: 0,
         color: '000',
