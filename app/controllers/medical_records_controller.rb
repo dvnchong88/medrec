@@ -13,6 +13,7 @@ class MedicalRecordsController < ApplicationController
 
   def show
     @medical_record = MedicalRecord.find(params[:id])
+    authorize @medical_record
   end
 
   def create
@@ -39,7 +40,7 @@ class MedicalRecordsController < ApplicationController
     @medical_record = MedicalRecord.find(params[:id])
     authorize @medical_record
     if @medical_record.update(record_params)
-      redirect_to medical_records_path, notice: 'Record was successfully updated.'
+      redirect_to patient_medical_records_path(current_user.patient), notice: 'Record was successfully updated.'
     else
       render :edit
     end
