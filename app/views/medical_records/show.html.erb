@@ -8,7 +8,7 @@
   <p><%= "#{@medical_record.patient.first_name}" %></p>
   <h4>Symptoms: </h4>
   <p><%= "#{@medical_record.symptoms}" %></p>
-  <%= @medical_record.photos.each do |photo| %>
+  <% @medical_record.photos.each do |photo| %>
     <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
   <%= link_to :back do %>
