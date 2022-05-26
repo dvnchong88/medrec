@@ -9,12 +9,10 @@
     <%= link_to root_path do %>
       <i class="fas fa-notes-medical fa-3x icon-cog"></i>
     <% end %>
-    <div class="popup" onclick="myFunction()"><i class="fas fa-qrcode fa-3x icon-cog"></i>
-      <span class="popupicon" id="myPopup">
-        <div class="qr-code mt-3">
-          <%= @svg.html_safe %>
-        </div>
-      </span>
+    <i class="fas fa-qrcode fa-3x icon-cog"></i>
+    <div class="qr-code mt-3">
+      <%= current_user.patient.qr_code(patient_medical_records_url(self)).html_safe %>
     </div>
   </div>
+</div>
 </div>
