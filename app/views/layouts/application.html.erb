@@ -9,22 +9,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
-  <div class="page-frame-content">
-    <div class="page-frame-header">
-      <% unless @hide_navbar %>
-        <%= render 'shared/navbar' %>
-      <% end %>
-      <%= render 'shared/flashes' %>
-    </div>
-    <div class="page-frame-body">
-      <body>
-        <%= yield %>
-      </body>
-    </div>
-    <% unless @hide_footer %>
-      <div class="page-frame-footer">
-        <%= render 'shared/footer' %>
+  <body>
+    <div class="page-frame-content">
+      <div class="page-frame-header">
+        <% unless @hide_navbar %>
+          <%= render 'shared/navbar' %>
+        <% end %>
+        <%= render 'shared/flashes' %>
       </div>
-    <% end %>
-  </div>
+      <div class="page-frame-body">
+        <%= yield %>
+      </div>
+      <% unless @hide_footer %>
+        <div class="page-frame-footer">
+          <%= render 'shared/footer' %>
+        </div>
+      <% end %>
+    </div>
+  </body>
 </html>
