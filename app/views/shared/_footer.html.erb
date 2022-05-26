@@ -1,15 +1,15 @@
 <div class="footer">
   <div class="container-fluid d-flex justify-content-around py-1 ">
     <%= link_to dashboard_path do %>
-      <i class="fas fa-plus fa-3x"></i>
+      <i class="fas fa-plus fa-3x icon-cog"></i>
     <% end %>
     <%= link_to root_path do %>
-      <i class="fas fa-pen fa-3x"></i>
+      <i class="fas fa-pen fa-3x icon-cog"></i>
     <% end %>
     <%= link_to root_path do %>
-      <i class="fas fa-notes-medical fa-3x"></i>
+      <i class="fas fa-notes-medical fa-3x icon-cog"></i>
     <% end %>
-    <div class="popup" onclick="myFunction()"><i class="fas fa-qrcode fa-3x"></i>
+    <div class="popup" onclick="myFunction()"><i class="fas fa-qrcode fa-3x icon-cog"></i>
       <span class="popupicon" id="myPopup">
         <div class="qr-code mt-3">
           <%= @svg.html_safe %>
