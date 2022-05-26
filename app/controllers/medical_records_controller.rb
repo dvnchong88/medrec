@@ -53,6 +53,7 @@ class MedicalRecordsController < ApplicationController
     redirect_to "medical_records/index", notice: "Are you sure you'd like to delete this record? If deleted, it cannot be restored"
   end
 
+
   private
 
   def record_params

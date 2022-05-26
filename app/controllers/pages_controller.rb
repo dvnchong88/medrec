@@ -19,4 +19,9 @@ class PagesController < ApplicationController
       )
     end
   end
+
+  def calendar
+    @user = current_user
+  end
+
 end
