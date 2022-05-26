@@ -11,12 +11,13 @@
         <i class="fas fa-ellipsis-v"></i>
       </div>
       <div class="item-drawer-settings">
-        <a href=patient_medical_record_path><i class="fas fa-folder-open"></i></a>
-        <a href=edit_patient_medical_record_path><i class="fas fa-pencil-alt"></i></a>
-        <a href="/patients/:patient_id/medical_records/"><i class="fas fa-trash"></i></a>
+        <a href="<%= patient_medical_record_path(current_user.patient, medical_record) %>"><i class="fas fa-folder-open"></i></a>
+        <a href="<%= edit_patient_medical_record_path(current_user.patient, medical_record) %>"><i class="fas fa-pencil-alt"></i></a>
+        <a href="<%= patient_medical_record_path(current_user.patient, medical_record) method: :delete %>"><i class="fas fa-trash"></i></a>
+        <%# <%= link_to "Cancel", booking_path(booking), method: :delete, data: { confirm: "Are you sure you'd like to cancel this booking?" }, class: "btn btn-danger btn-sm"%>
       </div>
     </div>
   <% end %>
+  <%= link_to "New Medical Record +", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
 </div>
-<%= link_to "New Medical Record", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
 </div>
