@@ -24,9 +24,9 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to patient_medical_records_path(@medical_record)
+      redirect_to patient_medical_records_path(@medical_record), notice: 'Record was saved.'
     else
-      render :new
+      render :new, notice: 'Record was not saved. Please try again.'
     end
   end
 
@@ -57,6 +57,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, :name, :address, :qr_code, photos: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
   end
 end
