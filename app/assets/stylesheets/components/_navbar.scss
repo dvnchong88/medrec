@@ -1,6 +1,17 @@
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-radius: 0px 0px 24px 24px;
+}
+
 .navbar-lewagon {
   justify-content: space-between;
-  background: rgb(10, 153, 141);
+  background: linear-gradient(156deg, #7f7fd5, #86a8e7, #91eae4);
 }
 
 .navbar-lewagon .navbar-collapse {

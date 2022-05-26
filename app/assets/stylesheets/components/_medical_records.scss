@@ -71,7 +71,7 @@
   height: 100%;
   cursor: pointer;
   /*customizable*/
-  background-color: #0ba2a5;
+  background: linear-gradient(156deg, #7f7fd5, #86a8e7, #91eae4);
   border-radius: 0 16px 16px 0;
   width: 40px;
   font-size: 40px;
@@ -99,18 +99,19 @@
   justify-content: space-between;
 }
 
-.page-frame-header {
-  margin-bottom: 3px;
-}
+// .page-frame-header {
+//   margin-bottom: 3px;
+// }
 
 .page-frame-body {
   flex-grow: 1;
   overflow: scroll;
+  background: #f1f1e8;
 }
 
 .page-frame-footer {
   height: 60px;
-  background-color: rgb(10, 153, 141);
+  background: linear-gradient(156deg, #7f7fd5, #86a8e7, #91eae4);
   color: white;
   link_to {text-decoration:none; background-color:transparent;};
 }
