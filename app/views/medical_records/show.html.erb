@@ -6,6 +6,8 @@
     <p><%= "#{@medical_record.patient.first_name}" %></p>
     <h4>Symptoms: </h4>
     <p><%= "#{@medical_record.symptoms}" %></p>
+    <h4>Diagnosis: </h4>
+    <p><%= "#{@medical_record.diagnosis}" %></p>
     <% @medical_record.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
     <% end %>
