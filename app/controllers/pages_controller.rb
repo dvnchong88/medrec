@@ -22,6 +22,7 @@ class PagesController < ApplicationController
 
   def calendar
     @user = current_user
+    @events = policy_scope(Event.where(patient_id: @user.patient.id))
+    @event = Event.new
   end
-
 end
