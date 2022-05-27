@@ -1,5 +1,6 @@
 <div class="container mt-2">
   <h1>Medical History</h1>
+  <%= link_to "New Medical Record +", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
   <% @medical_records.each do |medical_record| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
       <div class="item-drawer-content">
@@ -16,5 +17,4 @@
       </div>
     </div>
   <% end %>
-  <%= link_to "New Medical Record +", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
 </div>

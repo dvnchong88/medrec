@@ -7,6 +7,10 @@
 
 .page-frame-header {
   margin-bottom: 3px;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
 }
 
 .page-frame-body {
@@ -32,8 +36,8 @@
 }
 
 .circle {
-  height: 75px;
-  width: 75px;
+  height: 60px;
+  width: 60px;
   background-color: rgb(29, 101, 169);
   border-radius: 50%;
   text-align: center;
