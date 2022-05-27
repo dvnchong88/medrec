@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   has_many :medical_records, dependent: :destroy
   has_many :doctors, through: :medical_records
+  has_many :events, dependent: :destroy
   has_one_attached :photo
   belongs_to :user
 
