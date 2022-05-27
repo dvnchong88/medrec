@@ -11,8 +11,8 @@
     <% @medical_record.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
     <% end %>
-    <%= link_to :back do %>
-      <i class="fas fa-arrow-circle-left fa-3x"></i>
-    <% end %>
   </div>
+  <%= link_to :back do %>
+    <i class="fas fa-arrow-circle-left fa-3x"></i>
+  <% end %>
 </div>
