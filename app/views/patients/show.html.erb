@@ -20,5 +20,5 @@
   <p><%= "#{@patient.emergency_contact}" %></p>
   <h4>Smoker: </h4>
   <p><%= @patient.smoker?%></p>
-  <%=link_to "Edit", edit_patient_path(current_user.patient), class: "nav-link" %>
+  <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary" %>
 </div>
