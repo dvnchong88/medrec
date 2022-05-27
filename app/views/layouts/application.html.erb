@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
   </head>
   <body>
     <div class="page-frame-content">
@@ -15,11 +19,11 @@
         <% unless @hide_navbar %>
           <%= render 'shared/navbar' %>
         <% end %>
-        <%= render 'shared/flashes' %>
       </div>
       <div class="page-frame-body">
         <%= yield %>
       </div>
+      <%= render 'shared/flashes' %>
       <% unless @hide_footer %>
         <div class="page-frame-footer">
           <%= render 'shared/footer' %>
