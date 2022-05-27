@@ -30,5 +30,8 @@
         </div>
       <% end %>
     </div>
+    <% if user_signed_in? %>
+      <%= render 'shared/modal' %>
+    <% end %>
   </body>
 </html>
