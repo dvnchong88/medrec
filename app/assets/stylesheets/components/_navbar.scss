@@ -30,3 +30,9 @@
   color: rgb(10, 153, 141);
   font-weight: 900;
 }
+
+.navbar-toggler, .navbar-toggler:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
