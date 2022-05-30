@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Your Personal Info</h1>
+  <%= image_tag (current_user.patient.photo.attached? ? cl_image_path(current_user.patient.photo.key) : "user.png"), height: 300, crop: :fill %>
   <h4>Full Name: </h4>
   <p><%= "#{@patient.last_name}, #{@patient.first_name}" %></p>
   <h4>Date of Birth: </h4>

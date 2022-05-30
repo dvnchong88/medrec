@@ -7,13 +7,15 @@
       <%= link_to root_path do %>
         <i class="fas fa-cog fa-2x icon-cog pt-2"></i>
       <% end %>
-      <div class="w-10">
-        <div class="circle">
-          <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fas fa-qrcode fa-3x icon-cog"></i>
-          </button>
+      <% if current_user.user_type == 'patient' %>
+        <div class="w-10">
+          <div class="circle">
+            <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="fas fa-qrcode fa-3x icon-cog"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      <% end %>
       <%= link_to root_path do %>
         <i class="fas fa-comment-dots fa-2x icon-cog pt-2"></i>
       <% end %>
