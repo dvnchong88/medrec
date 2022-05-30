@@ -1,18 +1,19 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Scan For Medical Records</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="qr-code mt-3 d-flex justify-content-center">
-          <%= current_user.patient.qr_code(patient_medical_records_url(self)).html_safe %>
+      <% if current_user.user_type == 0%>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Scan For Medical Records</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+        <div class="modal-body">
+          <div class="qr-code mt-3 d-flex justify-content-center">
+            <%= current_user.patient.qr_code(patient_medical_records_url(self)).html_safe %>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      <%end%>
     </div>
   </div>
 </div>

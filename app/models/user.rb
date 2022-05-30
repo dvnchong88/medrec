@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one :doctor
   enum user_type: { patient: 0, doctor: 1 }
   after_create :create_profile
+  has_one_attached :photo
 
   private
 
