@@ -2,7 +2,7 @@ require "rqrcode"
 
 class MedicalRecordsController < ApplicationController
   def index
-    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id))
+    @medical_records = policy_scope(MedicalRecord.where(patient_id: current_user.patient.id)).order(created_at: :desc)
   end
 
   def new
@@ -19,7 +19,7 @@ class MedicalRecordsController < ApplicationController
   def create
     @medical_record = MedicalRecord.new(record_params)
     @medical_record.patient = Patient.find(params[:patient_id])
-    @medical_record.doctor = Doctor.first
+    @medical_record.doctor = Doctor.all.sample
     @medical_record.creator = current_user.user_type
     authorize @medical_record
 
@@ -52,7 +52,6 @@ class MedicalRecordsController < ApplicationController
     @medical_record.destroy
     redirect_to "medical_records/index", notice: "Are you sure you'd like to delete this record? If deleted, it cannot be restored"
   end
-
 
   private
 
