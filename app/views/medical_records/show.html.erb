@@ -1,15 +1,22 @@
 <div class="container">
   <div class="card-category-medical">
-    <h5>Doctor name: </h5>
-    <p><%= "#{@medical_record.doctor.first_name}" %></p>
+    <% if @medical_record.doctor_id? %>
+      <h5>Doctor name: </h5>
+      <p><%= "#{@medical_record.doctor.first_name}" %></p>
+    <% elsif @medical_record.doctor_name? %>
+      <h5>Doctor name: </h5>
+      <p><%= "#{@medical_record.doctor_name}" %></p>
+    <% end %>
     <h5>Patient name: </h5>
     <p><%= "#{@medical_record.patient.first_name}" %></p>
     <h5>Symptoms: </h5>
     <p><%= "#{@medical_record.symptoms}" %></p>
-    <h5>Diagnosis: </h5>
-    <p><%= "#{@medical_record.diagnosis}" %></p>
-    <% @medical_record.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
+    <% if @medical_record.diagnosis? %>
+      <h5>Diagnosis: </h5>
+      <p><%= "#{@medical_record.diagnosis}" %></p>
+      <% @medical_record.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
+      <% end %>
     <% end %>
   </div>
   <%= link_to :back do %>
