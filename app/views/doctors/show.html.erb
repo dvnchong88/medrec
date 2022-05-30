@@ -1,0 +1,13 @@
+<div class="container">
+  <%= image_tag (current_user.doctor.photo.attached? ? cl_image_path(current_user.doctor.photo.key) : "user.png"), height: 300, crop: :fill %>
+  <h1>Doctor Info</h1>
+  <h4>Doctor: </h4>
+  <p><%= "#{@doctor.last_name}, #{@doctor.first_name}" %></p>
+  <h4>License Number: </h4>
+  <p><%= "#{@doctor.license_number}" %></p>
+  <h4>Specialy: </h4>
+  <p><%= "#{@doctor.specialty}" %></p>
+  <h4>Clinic: </h4>
+  <p><%= "#{@doctor.clinic_name}" %></p>
+  <%=link_to "Edit", edit_doctor_path(current_user.doctor), class: "btn btn-primary" %>
+</div>

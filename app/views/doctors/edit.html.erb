@@ -1,0 +1,14 @@
+<div class="container">
+  <h1> Update Personal Info</h1>
+  <%= simple_form_for(@doctor) do |f| %>
+    <div class="row">
+      <div class="col"><%= f.input :last_name %></div>
+      <div class="col"><%= f.input :first_name %></div>
+    </div>
+    <%= f.input :license_number %>
+    <%= f.input :specialty, as: :select, collection: Doctor.specialties.keys %>
+    <%= f.input :clinic_name %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit value: "Save", class: "btn btn-primary"%>
+  <% end %>
+</div>

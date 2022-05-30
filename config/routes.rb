@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :patients, only: [:show, :new, :create, :update, :edit] do
     resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
+  resources :doctors, only: [:show, :new, :create, :update, :edit] do
+    resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  end
   resources :events, only: [:index, :show, :new, :create, :update, :edit, :destroy]
   get "calendar", to: "pages#calendar", as: "calendar"
 end
