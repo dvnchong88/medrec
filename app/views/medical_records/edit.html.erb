@@ -5,9 +5,8 @@
     <%= f.input :symptoms %>
     <%= f.input :diagnosis %>
     <%= f.input :prescribed_medicine %>
-    <%= f.input :doctor %>
+    <%= f.input :doctor_name %>
     <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
-    <%#= f.input :qr_code %>
     <%= f.button :submit, "Update", class: "btn btn-primary mt-3" %>
   <% end %>
 </div>
