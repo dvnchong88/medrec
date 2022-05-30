@@ -5,10 +5,15 @@
     <% end %>
     <% if user_signed_in? && current_user.user_type == "patient" %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <%= image_tag (current_user.patient.photo.attached? ? cl_image_path(current_user.patient.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% if current_user.user_type == "patient" %>
+          <%= image_tag (current_user.patient.photo.attached? ? cl_image_path(current_user.patient.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item active">
+              <% if current_user.user_type == "patient" %>
           <li class="nav-item active">
             <%= link_to "Personal Info", patient_path(current_user.patient), class: "dropdown-item" %>
           </li>

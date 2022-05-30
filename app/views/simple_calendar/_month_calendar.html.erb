@@ -1,10 +1,5 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-  </div>
-
+  <h2><span class="calendar-title mb-3"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span></h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,13 +8,12 @@
         <% end %>
       </tr>
     </thead>
-
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <div data-bs-toggle="modal" data-bs-target="#calendarModal">
+            <%= content_tag :td, class: calendar.td_classes_for(day), data:{ bs_toggle: "modal", bs_target: "#calendarModal-#{day.to_s}" } do %>
+              <div>
                 <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
                   <% @events.each do |event| %>
                     <%= event.title %>
@@ -31,8 +25,36 @@
               </div>
             <% end %>
           <% end %>
+          <% date_range.each do |day| %>
+            <div class="modal fade" id="calendarModal-<%= day.to_s %>" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="calendarModalLabel-<%= day.to_s %>">Manage your events</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <%= simple_form_for @event do |f| %>
+                        <%= f.input :title %>
+                        <%= f.input :start_time, selected: day, as: :time, html5: true %>
+                        <%= f.input :end_time, selected: day, as: :time, html5: true %>
+                        <%= f.input :location%>
+                        <%= f.input :notes %>
+                        <div class="modal-footer">
+                          <%= f.button :submit, "Save", class: "btn btn-primary mt-3" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class:"btn btn-primary" %>
+  <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class:"btn btn-primary" %>
 </div>
