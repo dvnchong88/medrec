@@ -1,23 +1,25 @@
 <div class="container mt-3 mb-3" style="height: 81vh; align-items: center">
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://media.istockphoto.com/photos/healthcare-business-graph-and-medical-examination-and-businessman-picture-id1165046681?k=20&m=1165046681&s=612x612&w=0&h=SrpmV485HlYMO591mH8McP0ZjYYMBkxOpWDGMuq6XRU=);">
     <div class="container">
-      <h1>Welcome Kyle</h1>
+      <h1>Welcome</h1>
     </div>
   </div>
   <% if user_signed_in? && current_user.user_type == "patient" %>
-    <div class="cards">
+    <div class="cards container">
       <div class="row justify-content-center row-cols-2">
         <div class="col">
           <%= link_to patient_medical_records_path(current_user.patient) do%>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1584628804801-aa1a640cba8e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGZpbGVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800)">
+            <div class="card-category-dashboard first">
+              <i class="fa fa-book fa-5x" aria-hidden="true"></i>
               <p>Medical Records</p>
             </div>
           <% end %>
         </div>
         <div class="col">
           <%= link_to calendar_path(current_user) do%>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1435527173128-983b87201f4d?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXBwb2ludG1lbnRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800)">
-              Calendar
+            <div class="card-category-dashboard">
+              <i class="fa fa-calendar fa-5x" aria-hidden="true"></i>
+              <p>Calendar</p>
             </div>
           <% end %>
         </div>
@@ -25,15 +27,17 @@
       <div class="row justify-content-center row-cols-2">
         <div class="col">
           <%= link_to patient_medical_records_path(current_user.patient) do%>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/45/eDLHCtzRR0yfFtU0BQar_sylwiabartyzel_themap.jpg?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bG9jYXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=800)">
-              Locate
+            <div class="card-category-dashboard">
+              <i class="fa fa-map-marker fa-5x" aria-hidden="true"></i>
+              <p>Locate</p>
             </div>
           <% end %>
         </div>
         <div class="col">
           <%= link_to patient_medical_records_path(current_user.patient) do%>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1568667256549-094345857637?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bGlicmFyeXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800)">
-              Library
+            <div class="card-category-dashboard last">
+              <i class="fa fa-bookmark fa-5x" aria-hidden="true"></i>
+              <p>Library</p>
             </div>
           <% end %>
         </div>
