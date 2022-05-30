@@ -3,8 +3,6 @@
   <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
     <%= f.input :date, start_year: Time.now.year - 100 %>
     <%= f.input :symptoms %>
-    <%= f.input :diagnosis %>
-    <%= f.input :prescribed_medicine%>
     <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
     <%= f.button :submit, "Save", class:"btn btn-primary mt-3" %>
     <%#= f.input :qr_code %>

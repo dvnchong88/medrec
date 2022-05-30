@@ -14,15 +14,19 @@ User.destroy_all
 
 puts "creating users"
 
-patients = []
 5.times do
-  sex = (0..2).to_a
-  user = User.create!(
+  User.create!(
     email: Faker::Internet.email,
     password: '123456',
     user_type: 0
   )
-  Patient.create!(
+end
+
+puts "creating patients"
+
+User.all.each do |user|
+  sex = (0..2).to_a
+  user.patient.update!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     date_of_birth: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
@@ -34,48 +38,45 @@ patients = []
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.cell_phone,
     emergency_contact: Faker::Relationship.familial,
-    smoker: Faker::Boolean.boolean,
-    user: user
+    smoker: Faker::Boolean.boolean
   )
-  patients << user
+  # patients << user
 end
 puts "there are now #{User.count} users."
 
-puts "creating patients"
 puts "there are now #{Patient.count} patients."
 
+puts "creating doctors"
 doctors = []
-specialty = %w[Homeopathic Endocronolgy OBGYN Cardiology Dermotology General Surgery]
-2.times do
+specialty = %w[Dermatology Surgery]
+3.times do
   user = User.create!(
     email: Faker::Internet.email,
     password: '123456',
     user_type: 1
   )
-  Doctor.create!(
+  user.doctor.update!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     specialty: specialty.sample,
     clinic_name: "#{Faker::FunnyName.two_word_name} Hospital",
-    license_number: Faker::IDNumber.invalid,
-    user: user
+    license_number: Faker::IDNumber.invalid
   )
-  doctors << user
+  # doctors << user
 end
 
-puts "creating doctors"
 puts "there are now #{Doctor.count} doctors."
 
 puts "creating medical records"
 
-patients.each do |user|
+Patient.all.each do |user|
   rand(5...10).times do
     MedicalRecord.create!(
       symptoms: "Asthma",
       diagnosis: "I was diagnosed with high blood pressure today",
       date: Faker::Date.between(from: '1974-09-23', to: '2003-09-25'),
-      patient: user.patient,
-      doctor: doctors.sample.doctor
+      patient: user,
+      doctor: Doctor.all.sample
     )
   end
 end
@@ -84,4 +85,4 @@ User.all.each do |user|
   user.qr_code = "http://localhost:3000/patients/#{user.patient.id}/medical_records" if user.user_type == "patient"
   user.save
 end
-puts "there are now #{Doctor.count} medical records."
+puts "there are now #{MedicalRecord.count} medical records."

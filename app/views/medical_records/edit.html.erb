@@ -4,7 +4,8 @@
     <%= f.input :date, start_year: Time.now.year - 100 %>
     <%= f.input :symptoms %>
     <%= f.input :diagnosis %>
-    <%= f.input :prescribed_medicine%>
+    <%= f.input :prescribed_medicine %>
+    <%= f.input :doctor %>
     <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
     <%#= f.input :qr_code %>
     <%= f.button :submit, "Update", class: "btn btn-primary mt-3" %>

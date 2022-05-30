@@ -1,7 +1,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <% if current_user.user_type == 0%>
+      <% if current_user.user_type == 'patient' %>
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Scan For Medical Records</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
