@@ -1,29 +1,33 @@
-<%= month_calendar(events: @events) do |date, events| %>
-  <%= date.day %>
-  <% events.each do |event| %>
-    <%= event.title %>
+<div class="container">
+  <h1>Calendar</h1>
+  <%= month_calendar(events: @events) do |date, events| %>
+    <%= date.day %>
+    <% events.each do |event| %>
+      <%= event.title %>
+    <% end %>
   <% end %>
-<% end %>
-<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="calendarModalLabel">Manage your events</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <%= simple_form_for @event do |f| %>
-            <%= f.input :title %>
-            <%= f.input :start_time, start_year: Time.now.year - 100, as: :datetime %>
-            <%= f.input :end_time, start_year: Time.now.year - 100, as: :datetime  %>
-            <%= f.input :location%>
-            <%= f.input :notes %>
-            <div class="modal-footer">
-              <%= f.button :submit, "Save", class: "btn btn-primary mt-3" %>
-            </div>
-          <% end %>
+  <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="calendarModalLabel">Manage your events</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <%= simple_form_for @event do |f| %>
+              <%= f.input :title %>
+              <%= f.input :start_time, start_year: Time.now.year - 100, as: :datetime, html5: true %>
+              <%= f.input :end_time, start_year: Time.now.year - 100, as: :datetime, html5: true  %>
+              <%= f.input :location%>
+              <%= f.input :notes %>
+              <div class="modal-footer">
+                <%= f.button :submit, "Save", class: "btn btn-primary mt-3" %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>

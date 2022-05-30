@@ -1,10 +1,5 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
-  </div>
-
+  <h2><span class="calendar-title mb-3"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span></h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,13 +8,12 @@
         <% end %>
       </tr>
     </thead>
-
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <div data-bs-toggle="modal" data-bs-target="#calendarModal">
+            <%= content_tag :td, class: calendar.td_classes_for(day), data:{bs_toggle: "modal", bs_target: "#calendarModal"} do %>
+              <div>
                 <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
                   <% @events.each do |event| %>
                     <%= event.title %>
@@ -35,4 +29,6 @@
       <% end %>
     </tbody>
   </table>
+  <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class:"btn btn-primary" %>
+  <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class:"btn btn-primary" %>
 </div>

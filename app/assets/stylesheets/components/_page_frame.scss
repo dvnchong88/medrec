@@ -16,10 +16,10 @@
 .page-frame-body {
   flex-grow: 1;
   overflow: scroll;
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .page-frame-footer {
