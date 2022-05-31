@@ -40,6 +40,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'pundit'
 gem "rqrcode", "~> 2.0"
 gem "simple_calendar", "~> 2.4"
+gem 'google-api-client'
+gem 'google-cloud-vision'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
