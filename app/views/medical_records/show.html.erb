@@ -14,9 +14,11 @@
     <% if @medical_record.diagnosis? %>
       <h5>Diagnosis: </h5>
       <p><%= "#{@medical_record.diagnosis}" %></p>
-      <% @medical_record.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
-      <% end %>
+    <% end %>
+    <% @medical_record.photos.each do |photo| %>
+      <%# <div id="lightbox"> %>
+      <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill, class:"zoomD"%>
+      <%# </div> %>
     <% end %>
   </div>
   <%= link_to :back do %>
