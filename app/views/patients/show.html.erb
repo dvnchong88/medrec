@@ -5,21 +5,15 @@
   <p><%= "#{@patient.last_name}, #{@patient.first_name}" %></p>
   <h4>Date of Birth: </h4>
   <p><%= "#{@patient.date_of_birth}" %></p>
-  <h4>Sex: </h4>
-  <p><%= "#{@patient.sex}" %></p>
-  <h4>Blood Type: </h4>
-  <p><%= "#{@patient.blood_type}" %></p>
-  <h4>Height: </h4>
-  <p><%= "#{@patient.height}" %> cm</p>
-  <h4>Weight: </h4>
-  <p><%= "#{@patient.weight}" %> kg</p>
+  <h4><i class="fas fa-venus-mars"></i> - <%= "#{@patient.sex}" %></h4>
+  <h4><i class="fas fa-tint"></i>Type - <%= "#{@patient.blood_type}" %></h4>
+  <h4><i class="fas fa-ruler"></i> - <%= "#{@patient.height}" %> cm</h4>
+  <h4><i class="fas fa-weight"></i> - <%= "#{@patient.weight}" %> kg</h4>
+  <h4><i class="fas fa-phone-volume"></i> - <%= "#{@patient.phone_number}" %></h4>
   <h4>Allergies: </h4>
   <p><%= "#{@patient.allergies}" %></p>
-  <h4>Phone Number: </h4>
-  <p><%= "#{@patient.phone_number}" %></p>
   <h4>Emergency Contact: </h4>
   <p><%= "#{@patient.emergency_contact}" %></p>
-  <h4>Smoker: </h4>
-  <p><%= @patient.smoker?%></p>
-  <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary" %>
+  <h4><i class="fas fa-smoking"></i> - <%= @patient.smoker?%></h4>
+  <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary mb-3" %>
 </div>

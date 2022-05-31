@@ -11,6 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%# <script src="../../../app/javascript/controller/lightbox.js"></script> %>
     <%= render 'shared/ios_pwa_links' %>
   </head>
   <body>
@@ -33,5 +34,29 @@
     <% if user_signed_in? %>
       <%= render 'shared/modal', qr_code: @qr_code %>
     <% end %>
+    <script>
+      window.onload = () => {
+        // (A) GET LIGHTBOX & ALL .ZOOMD IMAGES
+        let all = document.getElementsByClassName("zoomD"),
+            lightbox = document.getElementById("lightbox");
+
+        // (B) CLICK TO SHOW IMAGE IN LIGHTBOX
+        // * SIMPLY CLONE INTO LIGHTBOX & SHOW
+        if (all.length>0) { for (let i of all) {
+          i.onclick = () => {
+            let clone = i.cloneNode();
+            clone.className = "";
+            lightbox.innerHTML = "";
+            lightbox.appendChild(clone);
+            lightbox.className = "show";
+          };
+        }}
+
+        // (C) CLICK TO CLOSE LIGHTBOX
+        lightbox.onclick = () => {
+          lightbox.className = "";
+        };
+      };
+    </script>
   </body>
 </html>
