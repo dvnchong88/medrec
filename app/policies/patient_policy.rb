@@ -21,4 +21,8 @@ class PatientPolicy < ApplicationPolicy
   def confirm?
     true
   end
+
+  def autofill?
+    true
+  end
 end

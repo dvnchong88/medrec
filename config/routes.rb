@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "/dashboard", to: "pages#dashboard", as: :dashboard
   resources :patients, only: [:show, :new, :create, :update, :edit] do
     resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+    member do
+      patch "autofill"
+    end
   end
   resources :doctors, only: [:show, :new, :create, :update, :edit] do
     resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
