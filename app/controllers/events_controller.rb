@@ -14,6 +14,7 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+
   def create
     @event = Event.new(record_params)
     @event.patient = current_user.patient

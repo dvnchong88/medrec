@@ -9,13 +9,14 @@
       </tr>
     </thead>
     <tbody>
+      <% events = @events.where(start_time: start_date.midnight..(start_date + 1.month).end_of_day, patient: current_user.patient) %>
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day), data:{ bs_toggle: "modal", bs_target: "#calendarModal-#{day.to_s}" } do %>
               <div>
                 <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                  <% @events.each do |event| %>
+                  <% events.each do |event| %>
                     <%= event.title %>
                   <% end %>
                   <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
@@ -24,7 +25,6 @@
                 <% end %>
               </div>
             <% end %>
-            <% events = @events.where(start_time: day.midnight..day.end_of_day, patient: current_user.patient) %>
             <div class="modal fade" id="calendarModal-<%= day.to_s %>" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
