@@ -17,4 +17,8 @@ class PatientPolicy < ApplicationPolicy
   def edit?
     true
   end
+
+  def confirm?
+    true
+  end
 end

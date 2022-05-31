@@ -16,9 +16,23 @@ class PatientsController < ApplicationController
   def edit
     @patient = Patient.find(params[:id])
     authorize @patient
+    # if @patient.photo.attached?
+    #   @lines = OCR.total(current_user.patient.photo.key)
+    #   @receipt.total_amount = OCR.total_amount(@lines) || 0
+    # else
+    #   @receipt.total_amount = 0
+    # end
+    # if @receipt.save
+    #   redirect_to receipt_path(@receipt)
+    # else
+    #   render :new
+    # end
   end
 
   def update
+    image = "https://cdn-japantimes.com/wp-content/uploads/2015/03/n-residentcard-a-20150326-870x489.jpg"
+    @info = Ocr.extract_text(image)
+    raise
     @patient = Patient.find(params[:id])
     authorize @patient
     if @patient.update(patient_params)
