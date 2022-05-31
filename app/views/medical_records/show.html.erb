@@ -15,11 +15,11 @@
       <h5>Diagnosis: </h5>
       <p><%= "#{@medical_record.diagnosis}" %></p>
     <% end %>
-    <% @medical_record.photos.each do |photo| %>
-      <%# <div id="lightbox"> %>
-      <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill, class:"zoomD"%>
-      <%# </div> %>
-    <% end %>
+    <div data-controller="lightbox">
+      <% @medical_record.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
+      <% end %>
+    </div>
   </div>
   <%= link_to :back do %>
     <i class="fas fa-arrow-circle-left fa-3x"></i>
