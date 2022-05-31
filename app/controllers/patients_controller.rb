@@ -30,9 +30,6 @@ class PatientsController < ApplicationController
   end
 
   def update
-    image = "https://cdn-japantimes.com/wp-content/uploads/2015/03/n-residentcard-a-20150326-870x489.jpg"
-    @info = Ocr.extract_text(image)
-    raise
     @patient = Patient.find(params[:id])
     authorize @patient
     if @patient.update(patient_params)
