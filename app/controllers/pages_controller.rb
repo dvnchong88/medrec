@@ -22,7 +22,8 @@ class PagesController < ApplicationController
 
   def calendar
     @user = current_user
-    @events = policy_scope(Event.where(patient_id: @user.patient.id))
+    date = params[:start_date] ? Date.parse(params[:start_date]) : Date.today
+    @events = Event.where(start_time: date.beginning_of_month..date.end_of_month, patient: current_user.patient)
     @event = Event.new
   end
 end
