@@ -3,6 +3,7 @@ class Patient < ApplicationRecord
   has_many :doctors, through: :medical_records
   has_many :events, dependent: :destroy
   has_one_attached :photo
+  has_one_attached :id_card
   belongs_to :user
 
   # validates :first_name, presence: true

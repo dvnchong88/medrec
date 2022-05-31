@@ -1,10 +1,22 @@
 <div class="container">
   <h1> Update Personal Info</h1>
+
+  <%= simple_form_for @patient, url: autofill_patient_path(@patient), remote: true do |f| %>
+    <%= f.input :id_card, as: :file %> <!-- You can style / change to camera later -->
+    <%= f.submit 'Autofill', class: 'btn btn-light' %>
+  <% end %>
+
   <%= simple_form_for(@patient) do |f| %>
+
+  <% if @patient.photo.attached? %>
+    <%= f.input :first_name, input_html: {value: "#{@info[4].split[2].downcase.capitalize}"} %>
+  <% else %>
     <div class="row">
       <div class="col"><%= f.input :last_name %></div>
       <div class="col"><%= f.input :first_name %></div>
     </div>
+  <% end %>
+  <%# <%= raise %>
     <%= f.input :date_of_birth, start_year: Time.now.year - 100, selected: 1990 %>
     <div class="row">
       <div class="col"><%= f.input :sex, collection: Patient.sexes.keys %></div>
