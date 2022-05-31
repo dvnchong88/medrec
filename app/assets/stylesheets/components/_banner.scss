@@ -1,15 +1,26 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 18px 0;
+  margin-bottom: 30px;
+  border-radius: 10px;
+
 }
 
 .banner h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  font-size: 46px;
   font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
 .banner p {
@@ -17,4 +28,9 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
