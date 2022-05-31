@@ -26,6 +26,7 @@
             <% end %>
           <% end %>
           <% date_range.each do |day| %>
+            <% events = Event.where(start_time: day.midnight..day.end_of_day) %>
             <div class="modal fade" id="calendarModal-<%= day.to_s %>" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -41,8 +42,14 @@
                         <%= f.input :end_time, selected: day, as: :time, html5: true %>
                         <%= f.input :location%>
                         <%= f.input :notes %>
+                        <%= f.button :submit, "Save", class: "btn btn-primary mt-3 mb-3" %>
                         <div class="modal-footer">
-                          <%= f.button :submit, "Save", class: "btn btn-primary mt-3" %>
+                          <div class="container">
+                            <% events.each do |event| %>
+                              * <strong><%= event.title %></strong>
+                              <br>
+                            <% end %>
+                          </div>
                         </div>
                       <% end %>
                     </div>

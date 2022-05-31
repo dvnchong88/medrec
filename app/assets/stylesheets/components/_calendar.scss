@@ -1,0 +1,36 @@
+.simple-calendar {
+  td {
+    max-width: 50px;
+    div {
+      overflow: hidden;
+      max-height: 65px;
+      font-size: small;
+    }
+  }
+
+  .day {
+    max-height: 50px;
+  }
+
+  #text {
+    overflow: hidden;
+
+  }
+  .current-month {background-color: #FAF3DD}
+
+  tr {
+    th{
+      text-align: center;
+    }
+
+  }
+
+}
+
+.reminder {
+width: 20px;
+height: 10px;
+border: solid 1px;
+overflow: hidden;
+
+}
