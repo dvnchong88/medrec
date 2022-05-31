@@ -14,36 +14,38 @@
           <% if user_signed_in? %>
             <li class="nav-item active">
               <% if current_user.user_type == "patient" %>
-          <li class="nav-item active">
-            <%= link_to "Personal Info", patient_path(current_user.patient), class: "dropdown-item" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log In Info", edit_user_registration_path(current_user), class: "dropdown-item" %>
-          </li>
-          <li>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </li>
-        </ul>
+                <li class="nav-item active">
+                  <%= link_to "Personal Info", patient_path(current_user.patient), class: "dropdown-item" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Log In Info", edit_user_registration_path(current_user), class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% elsif user_signed_in? && current_user.user_type == "doctor" %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <%= image_tag (current_user.doctor.photo.attached? ? cl_image_path(current_user.doctor.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item active">
+                <%= link_to "Doctor Info", doctor_path(current_user.doctor), class: "dropdown-item" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log In Info", edit_user_registration_path(current_user), class: "dropdown-item" %>
+              </li>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            </div>
+          </ul>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <% end %>
       </div>
-    <% elsif user_signed_in? && current_user.user_type == "doctor" %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <%= image_tag (current_user.doctor.photo.attached? ? cl_image_path(current_user.doctor.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item active">
-            <%= link_to "Doctor Info", doctor_path(current_user.doctor), class: "dropdown-item" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log In Info", edit_user_registration_path(current_user), class: "dropdown-item" %>
-          </li>
-          <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </li>
-        </div>
-      </ul>
-    <% else %>
-      <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-    <% end %>
-  </div>
-</div>
+    </div>
+  <% end %>
