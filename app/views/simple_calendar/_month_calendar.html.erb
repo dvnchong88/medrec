@@ -47,10 +47,10 @@
                         <%= f.input :title %>
                         <%= f.input :start_time, default: day, as: :time, html5: true, input_html: {class:"datepicker"} %>
                         <%= f.input :end_time, default: day, as: :time, html5: true, input_html: {class:"datepicker"} %>
-                        <%= f.input :location%>
+                        <%= f.input :location %>
                         <%= f.input :notes %>
                         <%= hidden_field_tag :today, day  %>
-                        <%= f.button :submit, "Save", class: "btn btn-primary mt-3 mb-3" %>
+                        <%= f.submit "Save", class: "btn btn-primary mt-3 mb-3" %>
                       <% end %>
                     </div>
                   </div>
