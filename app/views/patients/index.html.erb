@@ -3,7 +3,7 @@
   <% @patients.each do |patient| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
       <div class="item-drawer-content">
-        <h3><%= patient.first_name %></h3>
+        <h3><%= patient.last_name%>, <%= patient.first_name %></h3>
       </div>
       <div  data-action="click->drawer#open"  class="item-drawer-button">
         <i class="fas fa-ellipsis-v"></i>
