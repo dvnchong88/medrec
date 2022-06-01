@@ -7,6 +7,6 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Lightbox from 'stimulus-lightbox'
 
 const application = Application.start()
-const context = require.context("controllers", true, /_controller\.js$/)
 application.register('lightbox', Lightbox)
+const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
