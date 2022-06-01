@@ -12,9 +12,9 @@
         <i class="fas fa-ellipsis-v"></i>
       </div>
       <div class="item-drawer-settings">
-        <%# <a href="<%= patient_medical_record_path(medical_record) %>"><i class="fas fa-folder-open"></i></a> %>
-      <%# <a href="<%= edit_patient_medical_record_path(medical_record) %>"><i class="fas fa-pencil-alt"></i></a> %>
-  </div>
-</div>
-<% end %>
+        <a href="<%= patient_medical_record_path(medical_record.patient, medical_record) %>"><i class="fas fa-folder-open"></i></a>
+        <a href="<%= edit_patient_medical_record_path(medical_record.patient, medical_record) %>"><i class="fas fa-pencil-alt"></i></a>
+      </div>
+    </div>
+  <% end %>
 </div>
