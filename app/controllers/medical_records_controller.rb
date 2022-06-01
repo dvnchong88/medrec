@@ -24,6 +24,7 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
 
     if @medical_record.save
+      raise
       redirect_to patient_medical_records_path(@medical_record), notice: 'Record was saved.'
     else
       render :new, notice: 'Record was not saved. Please try again.'

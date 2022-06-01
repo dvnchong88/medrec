@@ -15,6 +15,8 @@
       <div class="col"><%= f.input :blood_type, :collection => %w[A+ B+ AB+ O+ A- B- AB- O-] %></div>
       <div class="col"><%= f.input :height, as: :select, collection: (0..250), label: "Height (cm)", selected: 150 %></div>
       <div class="col"><%= f.input :weight, as: :select, collection: (0..200),label: "Weight (kg)", selected: 50 %></div>
+      <div class="col"><%= f.input :nationality, as: :select, collection: Patient.nationalities.keys %></div>
+      <div class="col"><%= f.input :insurance, as: :select, collection: Patient.insurances.keys %></div>
     </div>
     <%= f.input :allergies %>
     <%= f.input :address %>
