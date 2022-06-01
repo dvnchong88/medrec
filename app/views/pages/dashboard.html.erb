@@ -72,21 +72,22 @@
             <% end %>
           </div>
           <div class="col">
-            <%= link_to dashboard_path do%>
-              <div class="card-category-dashboard last">
-                <i class="fa fa-bookmark fa-5x" aria-hidden="true"></i>
-                <p>Library</p>
+            <%= link_to map_path do%>
+              <div class="card-category-dashboard">
+                <i class="fas fa-map-marker-alt fa-3x"></i>
+                <p>Map</p>
               </div>
             <% end %>
           </div>
         </div>
       <% else %>
-        <%= link_to dashboard_path do%>
-          <div class="card-category-dashboard">
-            <i class="fa fa-map-marker fa-5x" aria-hidden="true"></i>
-            <p>Locate</p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+        <div class="cards container">
+          <%= link_to map_path do%>
+            <div class="card-category-dashboard">
+              <i class="fas fa-map-marker-alt fa-3x"></i>
+              <p>Map</p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
