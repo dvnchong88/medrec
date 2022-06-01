@@ -14,10 +14,18 @@ export default class extends Controller {
   static targets = [  ]
 
   connect() {
+    console.log("something")
+
     flatpickr(".datepicker", {
       enableTime: true,
       noCalendar: true,
       dateFormat: "H:i",
     });
+
+    console.log(flatpickr(".datepicker", {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+    }))
   }
 }
