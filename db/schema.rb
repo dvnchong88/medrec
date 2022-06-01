@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_035350) do
+ActiveRecord::Schema.define(version: 2022_06_01_073232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,8 @@ ActiveRecord::Schema.define(version: 2022_06_01_035350) do
     t.string "qr_code"
     t.bigint "doctor_id"
     t.string "doctor_name"
-    t.integer "symptoms"
+    t.string "symptoms", default: [], array: true
+    t.date "problem_since"
     t.index ["doctor_id"], name: "index_medical_records_on_doctor_id"
     t.index ["patient_id"], name: "index_medical_records_on_patient_id"
   end
@@ -101,6 +102,11 @@ ActiveRecord::Schema.define(version: 2022_06_01_035350) do
     t.bigint "user_id"
     t.integer "insurance"
     t.integer "nationality"
+    t.boolean "traveled_from_abroad"
+    t.string "family_health_problems", default: [], array: true
+    t.string "usual_medication", default: [], array: true
+    t.boolean "pregnancy"
+    t.boolean "lactation"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 

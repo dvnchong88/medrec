@@ -9,63 +9,8 @@
   <p>Tel: <%= current_user.patient.phone_number %></p>
   <p>Nationality: <%= current_user.patient.nationality %> </p>
   <p>Insurance: <%= current_user.patient.insurance %> </p>
-  <div class="row mb-3">
-    <label class="col-sm-3 col-form-label pt-0">Symptom</label>
-    <div class="col-sm-9">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox1" value="option1" required>
-        <label class="form-check-label" for="exampleInlineCheckbox1">I have fever</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox2" value="option2" required>
-        <label class="form-check-label" for="exampleInlineCheckbox2">I have a stomach ache</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox3" value="option3" required>
-        <label class="form-check-label" for="exampleInlineCheckbox3">I am sick</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox4" value="option4" required>
-        <label class="form-check-label" for="exampleInlineCheckbox4">I have a diarrhea</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox5" value="option5" required>
-        <label class="form-check-label" for="exampleInlineCheckbox5">I am vomiting</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox6" value="option6" required>
-        <label class="form-check-label" for="exampleInlineCheckbox6">I have a runny nose</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox7" value="option7" required>
-        <label class="form-check-label" for="exampleInlineCheckbox7">I have a cough</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox8" value="option8" required>
-        <label class="form-check-label" for="exampleInlineCheckbox8">I have a pharynx pain</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox9" value="option9" required>
-        <label class="form-check-label" for="exampleInlineCheckbox9">I have a headache</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="exampleInlineCheckbox10" value="option10" required>
-        <label class="form-check-label" for="exampleInlineCheckbox10">Others. Please describe.</label>
-            <div class="row mb-3">
-        <label for="exampleTextareaBio" class="col-sm-3 col-form-label">Bio</label>
-        <div class="col-sm-9">
-          <textarea class="form-control" id="exampleTextareaBio" rows="2" placeholder="Tell us your story" required></textarea>
-          <div class="invalid-feedback">Please provide a valid value.</div>
-          <div class="valid-feedback">Looks good!</div>
-          <div class="form-text">Textarea input example</div>
-        </div>
-      </div>
-      </div>
-      <div class="form-text">Collection as inline check boxes example</div>
-    </div>
-  </div>
   <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
-    <%= f.input :symptoms, as: :select, collection: MedicalRecord.symptoms.keys, :input_html => { :multiple => true } %>
+    <%= f.input :symptoms, as: :select, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true } %>
     <% if :symptoms == "others" %>
       <%= f.input :symptoms, as: :text %>
     <% end %>
