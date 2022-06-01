@@ -1,11 +1,11 @@
 <div class="footer">
   <% if user_signed_in? %>
     <div class="container-fluid d-flex justify-content-around icon-container">
-      <%= link_to dashboard_path do %>
-        <i class="fas fa-home fa-2x icon-cog pt-2"></i>
+      <%= link_to :back do %>
+        <i class="fas fa-undo fa-2x icon-cog pt-2"></i>
       <% end %>
-      <%= link_to root_path do %>
-        <i class="fas fa-cog fa-2x icon-cog pt-2"></i>
+      <%= link_to patient_path(current_user.patient) do %>
+        <i class="fas fa-user fa-2x icon-cog pt-2"></i>
       <% end %>
       <% if current_user.user_type == 'patient' %>
         <div class="w-10">
@@ -16,11 +16,11 @@
           </div>
         </div>
       <% end %>
-      <%= link_to root_path do %>
-        <i class="fas fa-comment-dots fa-2x icon-cog pt-2"></i>
+      <%= link_to edit_user_registration_path(current_user) do %>
+        <i class="fas fa-unlock-alt fa-2x icon-cog pt-2"></i>
       <% end %>
-      <%= link_to root_path do %>
-        <i class="fas fa-chart-bar fa-2x icon-cog pt-2"></i>
+      <%= link_to dashboard_path do %>
+        <i class="fas fa-home fa-2x icon-cog pt-2"></i>
       <% end %>
     </div>
   <% else %>

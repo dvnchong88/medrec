@@ -7,26 +7,26 @@ class MedicalRecordPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 
   def create?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 
   def index?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 
   def show?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 
   def edit?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 
   def update?
-    true
+    record.patient == user.patient || user.user_type == "doctor"
   end
 end
