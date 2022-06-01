@@ -16,7 +16,7 @@
           <% end %>
         </div>
         <div class="col">
-          <%= link_to calendar_path(current_user) do%>
+          <%= link_to calendar_path do%>
             <div class="card-category-dashboard">
               <i class="far fa-calendar-alt fa-4x"></i>
               <p>Calendar</p>
@@ -26,10 +26,10 @@
       </div>
       <div class="row justify-content-center row-cols-2">
         <div class="col">
-          <%= link_to patient_medical_records_path(current_user.patient) do%>
+          <%= link_to calendar_path(current_user) do%>
             <div class="card-category-dashboard">
               <i class="far fa-map fa-4x"></i>
-              <p>Locate</p>
+              <p>Appointments</p>
             </div>
           <% end %>
         </div>
