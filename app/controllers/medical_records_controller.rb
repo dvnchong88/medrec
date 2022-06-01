@@ -2,7 +2,7 @@ require "rqrcode"
 
 class MedicalRecordsController < ApplicationController
   def index
-    @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient
+    @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient.id
     @medical_records = policy_scope(MedicalRecord.where(patient: @patient)).order(created_at: :desc)
   end
 
@@ -24,7 +24,8 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to patient_medical_records_path(@medical_record), notice: 'Record was saved.'
+      # raise
+      redirect_to patient_medical_record_url(@medical_record.patient, @medical_record), notice: 'Record was saved.'
     else
       render :new, notice: 'Record was not saved. Please try again.'
     end
