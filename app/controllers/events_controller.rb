@@ -17,9 +17,22 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(record_params)
     @event.patient = current_user.patient
+    start_time = params[:event][:start_time].split(":")
+    end_time = params[:event][:end_time].split(":")
+    today = params[:today].split("-")
+    year = today[0].to_i
+    month = today[1].to_i
+    day = today[2].to_i
+    start_hour = start_time[0].to_i
+    start_minutes = start_time[1].to_i
+    end_hour = end_time[0].to_i
+    end_minutes = end_time[1].to_i
+    @event.start_time = DateTime.new(year, month, day, start_hour, start_minutes)
+    @event.end_time = DateTime.new(year, month, day, end_hour, end_minutes)
     authorize @event
 
     if @event.save
+
       redirect_to calendar_path, notice: 'Event was saved.'
     else
       render :new, notice: 'Event was not saved. Please try again.'
