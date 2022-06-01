@@ -1,15 +1,17 @@
-<h1>Edit Medical Record</h1>
-<div class="container mb-5 pb-5">
-  <%= simple_form_for [@medical_record.patient, @medical_record] do |f| %>
-    <%= f.input :date, start_year: Time.now.year - 100 %>
-    <%= f.input :symptoms, as: :check_boxes, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true }, wrapper: :vertical_collection_inline %>
-    <% if :symptoms == "others" %>
-      <%= f.input :symptoms, as: :text %>
+<div class="container mt-3">
+  <h1>Edit Medical Record</h1>
+  <div class="container mb-5 pb-5">
+    <%= simple_form_for [@medical_record.patient, @medical_record] do |f| %>
+      <%= f.input :date, start_year: Time.now.year - 100 %>
+      <%= f.input :symptoms, as: :check_boxes, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true }, wrapper: :vertical_collection_inline %>
+      <% if :symptoms == "others" %>
+        <%= f.input :symptoms, as: :text %>
+      <% end %>
+      <%= f.input :diagnosis %>
+      <%= f.input :prescribed_medicine %>
+      <%= f.input :doctor_name %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
+      <%= f.button :submit, "Update", class: "btn btn-primary mt-3" %>
     <% end %>
-    <%= f.input :diagnosis %>
-    <%= f.input :prescribed_medicine %>
-    <%= f.input :doctor_name %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
-    <%= f.button :submit, "Update", class: "btn btn-primary mt-3" %>
-  <% end %>
+  </div>
 </div>
