@@ -24,9 +24,7 @@
                 <% end %>
               </div>
             <% end %>
-          <% end %>
-          <% date_range.each do |day| %>
-            <% events = Event.where(start_time: day.midnight..day.end_of_day) %>
+            <% events = @events.where(start_time: day.midnight..day.end_of_day, patient: current_user.patient) %>
             <div class="modal fade" id="calendarModal-<%= day.to_s %>" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
