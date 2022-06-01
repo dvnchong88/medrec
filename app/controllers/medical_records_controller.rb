@@ -25,7 +25,7 @@ class MedicalRecordsController < ApplicationController
 
     if @medical_record.save
       # raise
-      redirect_to patient_medical_record_url(@medical_record.patient, @medical_record), notice: 'Record was saved.'
+      redirect_to patient_medical_record_path(@medical_record.patient, @medical_record), notice: 'Record was saved.'
     else
       render :new, notice: 'Record was not saved. Please try again.'
     end
