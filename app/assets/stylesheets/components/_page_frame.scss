@@ -6,7 +6,7 @@
 }
 
 .page-frame-header {
-  margin-bottom: 3px;
+  // margin-bottom: 3px;
   position: sticky;
   top: 0;
   left: 0;
@@ -24,7 +24,7 @@
 
 .page-frame-footer {
   width: 100vw;
-  background: rgb(9, 109, 224);
+  background: #3889e4;
   color: white;
   link_to {text-decoration:none; background-color:transparent;};
   position: fixed;
