@@ -28,6 +28,15 @@
             <div class="modal fade" id="calendarModal-<%= day.to_s %>" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
+                  <div class="modal-info">
+                    <div class="container">
+                      <h1>Events</h1>
+                      <% @events.each do |event| %>
+                        <strong><%= event.title %></strong>
+                        <br>
+                      <% end %>
+                    </div>
+                  </div>
                   <div class="modal-header">
                     <h5 class="modal-title" id="calendarModalLabel-<%= day.to_s %>">Manage your events</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -36,19 +45,12 @@
                     <div class="container">
                       <%= simple_form_for @event do |f| %>
                         <%= f.input :title %>
-                        <%= f.input :start_time, selected: day, as: :time, html5: true %>
-                        <%= f.input :end_time, selected: day, as: :time, html5: true %>
-                        <%= f.input :location%>
+                        <%= f.input :start_time, default: day, as: :time, html5: true, input_html: {class:"datepicker"} %>
+                        <%= f.input :end_time, default: day, as: :time, html5: true, input_html: {class:"datepicker"} %>
+                        <%= f.input :location %>
                         <%= f.input :notes %>
-                        <%= f.button :submit, "Save", class: "btn btn-primary mt-3 mb-3" %>
-                        <div class="modal-footer">
-                          <div class="container">
-                            <% @events.each do |event| %>
-                              <strong><%= event.title %></strong>
-                              <br>
-                            <% end %>
-                          </div>
-                        </div>
+                        <%= hidden_field_tag :today, day  %>
+                        <%= f.submit "Save", class: "btn btn-primary mt-3 mb-3" %>
                       <% end %>
                     </div>
                   </div>

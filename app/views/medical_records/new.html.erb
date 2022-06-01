@@ -1,4 +1,5 @@
 <h1>Medical History Form</h1>
+<h1><%= @medical_record.patient.first_name.capitalize %></h1>
 <div class="container mb-5 pb-5">
   <p>Name: <%= current_user.patient.first_name %> <%= current_user.patient.last_name %></p>
   <p>Date of Birth: <%= current_user.patient.date_of_birth %></p>

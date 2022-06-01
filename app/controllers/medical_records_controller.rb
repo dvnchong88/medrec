@@ -2,8 +2,8 @@ require "rqrcode"
 
 class MedicalRecordsController < ApplicationController
   def index
-    @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient
-    @medical_records = policy_scope(MedicalRecord.where(patient: @patient)).order(created_at: :desc)
+    @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient.id
+    @medical_records = policy_scope(MedicalRecord.where(patient: @patient)).order(date: :desc)
   end
 
   def new
@@ -21,13 +21,16 @@ class MedicalRecordsController < ApplicationController
     @medical_record = MedicalRecord.new(record_params)
     @medical_record.patient = Patient.find(params[:patient_id])
     @medical_record.creator = current_user.user_type
+    @medical_record.doctor = current_user.doctor? ? current_user.doctor : nill
     params[:medical_record][:symptoms].each do |symptom|
       @medical_record.symptoms.push(symptom) if symptom != ""
     end
+
     authorize @medical_record
 
     if @medical_record.save
-      redirect_to patient_medical_records_path(@medical_record), notice: 'Record was saved.'
+      # raise
+      redirect_to patient_medical_record_path(@medical_record.patient, @medical_record), notice: 'Record was saved.'
     else
       render :new, notice: 'Record was not saved. Please try again.'
     end
