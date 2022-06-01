@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one_attached :photo
 
   def medical_records_as_doctor
-    doctor ? doctor.medical_records : nill
+    doctor ? doctor.medical_records : nil
   end
 
   private
