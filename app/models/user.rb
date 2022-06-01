@@ -9,6 +9,10 @@ class User < ApplicationRecord
   after_create :create_profile
   has_one_attached :photo
 
+  def medical_records_as_doctor
+    doctor ? doctor.medical_records : nill
+  end
+
   private
 
   def create_profile
