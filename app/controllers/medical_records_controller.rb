@@ -21,7 +21,7 @@ class MedicalRecordsController < ApplicationController
     @medical_record = MedicalRecord.new(record_params)
     @medical_record.patient = Patient.find(params[:patient_id])
     @medical_record.creator = current_user.user_type
-    @medical_record.doctor = current_user.doctor? ? current_user.doctor : nill
+    @medical_record.doctor = current_user.doctor? ? current_user.doctor : nil
     params[:medical_record][:symptoms].each do |symptom|
       @medical_record.symptoms.push(symptom) if symptom != ""
     end
@@ -44,6 +44,9 @@ class MedicalRecordsController < ApplicationController
   def update
     # raise StandardError, 'NotAuthorized' unless @restaurant.user == current_user
     @medical_record = MedicalRecord.find(params[:id])
+    params[:medical_record][:symptoms].each do |symptom|
+      @medical_record.symptoms.push(symptom) if symptom != ""
+    end
     authorize @medical_record
     if @medical_record.update(record_params)
       redirect_to patient_medical_records_path(@medical_record.patient), notice: 'Record was successfully updated.'

@@ -1,20 +1,21 @@
 <h1>Medical History Form</h1>
-<h1><%= @medical_record.patient.first_name.capitalize %></h1>
+<h1><%= @medical_record.patient.last_name.capitalize %>, <%= @medical_record.patient.first_name.capitalize %></h1>
 <div class="container mb-5 pb-5">
   <p>Name: <%= current_user.patient.first_name %> <%= current_user.patient.last_name %></p>
   <p>Date of Birth: <%= current_user.patient.date_of_birth %></p>
   <p>Age: <% now = Time.now.utc.to_date %>
-  <%= now.year - current_user.patient.date_of_birth.year - ((now.month > current_user.patient.date_of_birth.month || (now.month == current_user.patient.date_of_birth.month && now.day >= current_user.patient.date_of_birth.day)) ? 0 : 1) %>
+    <%= now.year - current_user.patient.date_of_birth.year - ((now.month > current_user.patient.date_of_birth.month || (now.month == current_user.patient.date_of_birth.month && now.day >= current_user.patient.date_of_birth.day)) ? 0 : 1) %>
   </p>
   <p>Home address: <%= current_user.patient.address %></p>
   <p>Tel: <%= current_user.patient.phone_number %></p>
   <p>Nationality: <%= current_user.patient.nationality %> </p>
   <p>Insurance: <%= current_user.patient.insurance %> </p>
   <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
-    <%= f.input :symptoms, as: :select, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true } %>
-    <% if :symptoms == "others" %>
-      <%= f.input :symptoms, as: :text %>
-    <% end %>
+    <%= f.input :symptoms, as: :check_boxes, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true }, wrapper: :vertical_collection_inline %>
+    <%#= f.input :symptoms, as: :text %>
+    <%# <% if :symptoms == "others" %>
+    <%#= f.input :symptoms, as: :text %>
+    <%# end %>
     <%# <%= f.input :photos, as: :file, input_html: { multiple: true }  %>
     <%= f.button :submit, "Save", class:"btn btn-primary mt-3" %>
     <%#= f.input :qr_code %>
