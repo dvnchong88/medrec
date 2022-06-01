@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_30_075615) do
+ActiveRecord::Schema.define(version: 2022_06_01_073232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 2022_05_30_075615) do
 
   create_table "medical_records", force: :cascade do |t|
     t.bigint "patient_id", null: false
-    t.text "symptoms"
     t.text "diagnosis"
     t.string "prescribed_medicine"
     t.datetime "created_at", precision: 6, null: false
@@ -79,6 +78,8 @@ ActiveRecord::Schema.define(version: 2022_05_30_075615) do
     t.string "qr_code"
     t.bigint "doctor_id"
     t.string "doctor_name"
+    t.string "symptoms", default: [], array: true
+    t.date "problem_since"
     t.index ["doctor_id"], name: "index_medical_records_on_doctor_id"
     t.index ["patient_id"], name: "index_medical_records_on_patient_id"
   end
@@ -99,6 +100,13 @@ ActiveRecord::Schema.define(version: 2022_05_30_075615) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.integer "insurance"
+    t.integer "nationality"
+    t.boolean "traveled_from_abroad"
+    t.string "family_health_problems", default: [], array: true
+    t.string "usual_medication", default: [], array: true
+    t.boolean "pregnancy"
+    t.boolean "lactation"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 

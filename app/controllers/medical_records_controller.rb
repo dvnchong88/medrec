@@ -22,6 +22,10 @@ class MedicalRecordsController < ApplicationController
     @medical_record.patient = Patient.find(params[:patient_id])
     @medical_record.creator = current_user.user_type
     @medical_record.doctor = current_user.doctor? ? current_user.doctor : nill
+    params[:medical_record][:symptoms].each do |symptom|
+      @medical_record.symptoms.push(symptom) if symptom != ""
+    end
+
     authorize @medical_record
 
     if @medical_record.save
