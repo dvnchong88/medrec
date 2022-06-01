@@ -1,23 +1,36 @@
 <div class="footer">
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.user_type == "patient" %>
     <div class="container-fluid d-flex justify-content-around icon-container">
       <%= link_to :back do %>
         <i class="fas fa-undo fa-2x icon-cog pt-2"></i>
       <% end %>
+      <%= link_to edit_user_registration_path(current_user) do %>
+        <i class="fas fa-unlock-alt fa-2x icon-cog pt-2"></i>
+      <% end %>
+      <div class="w-10">
+        <div class="circle">
+          <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-qrcode fa-3x icon-cog"></i>
+          </button>
+        </div>
+      </div>
       <%= link_to patient_path(current_user.patient) do %>
         <i class="fas fa-user fa-2x icon-cog pt-2"></i>
       <% end %>
-      <% if current_user.user_type == 'patient' %>
-        <div class="w-10">
-          <div class="circle">
-            <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="fas fa-qrcode fa-3x icon-cog"></i>
-            </button>
-          </div>
-        </div>
+      <%= link_to dashboard_path do %>
+        <i class="fas fa-home fa-2x icon-cog pt-2"></i>
+      <% end %>
+    </div>
+  <% elsif user_signed_in? && current_user.doctor? %>
+    <div class="container-fluid d-flex justify-content-around icon-container">
+      <%= link_to :back do %>
+        <i class="fas fa-undo fa-2x icon-cog pt-2"></i>
       <% end %>
       <%= link_to edit_user_registration_path(current_user) do %>
         <i class="fas fa-unlock-alt fa-2x icon-cog pt-2"></i>
+      <% end %>
+      <%= link_to doctor_path(current_user.doctor) do %>
+        <i class="fas fa-user-md fa-2x icon-cog pt-2"></i>
       <% end %>
       <%= link_to dashboard_path do %>
         <i class="fas fa-home fa-2x icon-cog pt-2"></i>

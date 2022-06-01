@@ -1,6 +1,6 @@
 <div class="container mb-5 pb-5">
   <h1>Medical History</h1>
-  <%= link_to "New Medical Record +", new_patient_medical_record_path(current_user.patient), class:"btn btn-primary mt-3" %>
+  <%= link_to "New Medical Record +", new_patient_medical_record_path(@patient), class:"btn btn-primary mt-3" %>
   <% @medical_records.each do |medical_record| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
       <div class="item-drawer-content">
@@ -12,8 +12,8 @@
         <i class="fas fa-ellipsis-v"></i>
       </div>
       <div class="item-drawer-settings">
-        <a href="<%= patient_medical_record_path(current_user.patient, medical_record) %>"><i class="fas fa-folder-open"></i></a>
-        <a href="<%= edit_patient_medical_record_path(current_user.patient, medical_record) %>"><i class="fas fa-pencil-alt"></i></a>
+        <a href="<%= patient_medical_record_path(@patient, medical_record) %>"><i class="fas fa-folder-open"></i></a>
+        <a href="<%= edit_patient_medical_record_path(@patient, medical_record) %>"><i class="fas fa-pencil-alt"></i></a>
       </div>
     </div>
   <% end %>

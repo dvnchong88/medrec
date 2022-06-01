@@ -3,7 +3,7 @@
     <%= link_to dashboard_path, class: "navbar-brand" do %>
       <%= image_tag("logo.png", alt: "logo") %>
     <% end %>
-    <% if user_signed_in? && current_user.user_type == "patient" %>
+    <% if user_signed_in? && current_user.patient? %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <%= image_tag (current_user.patient.photo.attached? ? cl_image_path(current_user.patient.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       </button>
@@ -14,27 +14,21 @@
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %>
             </li>
           </ul>
-        <% elsif user_signed_in? && current_user.user_type == "doctor" %>
+        <% elsif user_signed_in? && current_user.doctor? %>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <%= image_tag (current_user.doctor.photo.attached? ? cl_image_path(current_user.doctor.photo.key) : "user.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
               <li class="nav-item active">
-                <%= link_to "Doctor Info", doctor_path(current_user.doctor), class: "dropdown-item" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Log In Info", edit_user_registration_path(current_user), class: "dropdown-item" %>
-              </li>
-              <li>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </li>
-            </ul>
+                <li>
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %>
+                </li>
+              </ul>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <% end %>
           </div>
-        <% else %>
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
