@@ -21,11 +21,5 @@ export default class extends Controller {
       noCalendar: true,
       dateFormat: "H:i",
     });
-
-    console.log(flatpickr(".datepicker", {
-      enableTime: true,
-      noCalendar: true,
-      dateFormat: "H:i",
-    }))
   }
 }

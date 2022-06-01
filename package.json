@@ -9,6 +9,7 @@
     "@rails/webpacker": "5.4.3",
     "bootstrap": "^5.1.3",
     "flatpickr": "^4.6.13",
+    "mapbox-gl": "^2.8.2",
     "stimulus": "^3.0.1",
     "stimulus-flatpickr": "^1.4.0",
     "stimulus-lightbox": "^3.0.0",

@@ -9,16 +9,16 @@
       <div class="row justify-content-center row-cols-2">
         <div class="col">
           <%= link_to patient_medical_records_path(current_user.patient) do%>
-            <div class="card-category-dashboard first">
-              <i class="fas fa-file-medical fa-4x"></i>
-              <p>Medical Records</p>
+            <div class="card-category-dashboard">
+              <i class="fas fa-file-medical fa-3x"></i>
+              <p>Records</p>
             </div>
           <% end %>
         </div>
         <div class="col">
           <%= link_to calendar_path do%>
             <div class="card-category-dashboard">
-              <i class="far fa-calendar-alt fa-4x"></i>
+              <i class="far fa-calendar-alt fa-3x"></i>
               <p>Calendar</p>
             </div>
           <% end %>
@@ -26,17 +26,17 @@
       </div>
       <div class="row justify-content-center row-cols-2">
         <div class="col">
-          <%= link_to calendar_path(current_user) do%>
+          <%= link_to map_path do%>
             <div class="card-category-dashboard">
-              <i class="far fa-map fa-4x"></i>
-              <p>Appointments</p>
+              <i class="fas fa-map-marker-alt fa-3x"></i>
+              <p>Map</p>
             </div>
           <% end %>
         </div>
         <div class="col">
           <%= link_to new_patient_medical_record_path(current_user.patient) do %>
-            <div class="card-category-dashboard last">
-              <i class="fas fa-paste fa-4x"></i>
+            <div class="card-category-dashboard">
+              <i class="fas fa-paste fa-3x"></i>
               <p>New Form</p>
             </div>
           <% end %>

@@ -11,7 +11,7 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item active">
             <li>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-white" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-black" %>
             </li>
           </ul>
         <% elsif user_signed_in? && current_user.doctor? %>

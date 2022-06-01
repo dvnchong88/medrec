@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
   resources :events, only: [:index, :show, :new, :create, :update, :edit, :destroy]
   get "calendar", to: "pages#calendar", as: "calendar"
+  get "/map", to: "pages#map", as: "map", as: "map"
 end
