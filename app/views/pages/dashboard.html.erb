@@ -10,7 +10,7 @@
         <div class="col">
           <%= link_to patient_medical_records_path(current_user.patient) do%>
             <div class="card-category-dashboard first">
-              <i class="far fa-file-alt fa-4x"></i>
+              <i class="fas fa-file-medical fa-4x"></i>
               <p>Medical Records</p>
             </div>
           <% end %>
@@ -34,10 +34,10 @@
           <% end %>
         </div>
         <div class="col">
-          <%= link_to patient_medical_records_path(current_user.patient) do%>
+          <%= link_to new_patient_medical_record_path(current_user.patient) do %>
             <div class="card-category-dashboard last">
-              <i class="far fa-bookmark fa-4x"></i>
-              <p>Library</p>
+              <i class="fas fa-paste fa-4x"></i>
+              <p>New Form</p>
             </div>
           <% end %>
         </div>
