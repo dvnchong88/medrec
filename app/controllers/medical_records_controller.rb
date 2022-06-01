@@ -8,7 +8,7 @@ class MedicalRecordsController < ApplicationController
 
   def new
     @medical_record = MedicalRecord.new
-    @patient = Patient.find(params[:patient_id])
+    @medical_record.patient = Patient.find(params[:patient_id])
     authorize @medical_record
   end
 
