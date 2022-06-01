@@ -1,0 +1,5 @@
+meta_product_name: "MedRec"
+meta_title: "MedRec - Take your health with you"
+meta_description: "MedRec is a mobile app that can safely store your medical data for easy upload to health professionals. Avoid filling out repetitive forms and manage your health appointments."
+meta_image: "logo2.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards

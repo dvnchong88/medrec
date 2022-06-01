@@ -15,10 +15,10 @@ module Medrec
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.hosts << /[a-z0-9\-]+\.ngrok\.io/
-    config.hosts << /.+\.ngrok\.io/
-    config.hosts << "medrec858.herokuapp.com"
-    config.hosts << "http://www.medrec-858.me/"
+    # config.hosts << /[a-z0-9\-]+\.ngrok\.io/
+    # config.hosts << /.+\.ngrok\.io/
+    # config.hosts << "medrec858.herokuapp.com"
+    # config.hosts << "http://www.medrec-858.me/"
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
