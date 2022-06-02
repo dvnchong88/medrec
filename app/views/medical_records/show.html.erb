@@ -51,14 +51,18 @@
     <% end %>
   </div>
   <% if @medical_record.photo_form.attached?%>
-    <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>)" class="position-relative">
-      <%= simple_form_for @medical_record do |f| %>
-        <% @infos.each do |info| %>
-          <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
-            <span><%= info[:text] %></span>
-          </div>
-        <% end %>
-      <% end %>
+    <div class="resize-wrapper" data-controller="resize">
+      <div class="resize-element">
+        <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>)" class="position-relative">
+          <%= simple_form_for @medical_record do |f| %>
+            <% @infos.each do |info| %>
+              <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
+                <span><%= info[:text] %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   <%end%>
 </div>
