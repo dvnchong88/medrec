@@ -1,6 +1,5 @@
 <div class="container mt-3 mb-5 pb-5 text-black">
   <h1>Your Personal Info</h1>
-  <%= image_tag (current_user.patient.photo.attached? ? cl_image_path(current_user.patient.photo.key) : "user.png"), height: 300, crop: :fill, style: "margin: 16px 34px;" %>
   <div class="card-category-profile">
     <h4>Full Name: </h4>
     <p><%= "#{@patient.last_name}, #{@patient.first_name}" %></p>
