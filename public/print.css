@@ -1,9 +1,0 @@
-.ocr.container:first-child,
-.page-frame-content,
-.page-frame-footer, .noPrint {
-  display: none;
-}
-
-.container:last-child {
-  width: 100%;
-}
