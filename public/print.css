@@ -1,9 +1,25 @@
+body {
+  margin: 0 !important;
+}
+
 .ocr.container:first-child,
 .page-frame-content,
-.page-frame-footer, .noPrint {
+.page-frame-footer, .noPrint, .alert {
   display: none;
 }
 
-.container:last-child {
-  width: 100%;
+.to-print {
+  margin: 0 !important;
+  padding: 0 !important;
+  page-break-after: always !important;
+  break-after: always !important;
+}
+
+.to-print .resize-wrapper {
+  width: calc(0.80 * 793.7px) !important;
+  height: calc(0.80 * 1123px) !important;
+}
+
+.to-print .resize-element {
+  transform: scale(calc(0.80 * 0.262235)) translate(-1115.5px, -1487.33px) !important;
 }
