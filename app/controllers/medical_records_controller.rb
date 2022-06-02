@@ -15,22 +15,28 @@ class MedicalRecordsController < ApplicationController
   def show
     @medical_record = MedicalRecord.find(params[:id])
     authorize @medical_record
+    if Rails.env == "development"
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+    else
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@medical_record.photo_form.key}"
+    end
+    @infos = Ocr.locate_text(image, @medical_record.patient)
   end
 
   def create
     @medical_record = MedicalRecord.new(record_params)
-    @medical_record.patient = Patient.find(params[:patient_id])
+    @patient = Patient.find(params[:patient_id])
+    @medical_record.patient = @patient
     @medical_record.creator = current_user.user_type
     @medical_record.date = Date.today
     @medical_record.doctor = current_user.doctor? ? current_user.doctor : nil
-    params[:medical_record][:symptoms].each do |symptom|
-      @medical_record.symptoms.push(symptom) if symptom != ""
-    end
+    # params[:medical_record][:symptoms].each do |symptom|
+    #   @medical_record.symptoms.push(symptom) if symptom != ""
+    # end
 
     authorize @medical_record
 
     if @medical_record.save
-      # raise
       redirect_to patient_medical_record_path(@medical_record.patient, @medical_record), notice: 'Record was saved.'
     else
       render :new, notice: 'Record was not saved. Please try again.'
@@ -58,13 +64,24 @@ class MedicalRecordsController < ApplicationController
 
   def autofill
     @medical_record = MedicalRecord.new(record_params)
-    authorize @medical_record
-    if Rails.env == "development"
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
-    else
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1/production/#{@medical_record.photo_form.key}"
+    @medical_record.patient = Patient.find(params[:patient_id])
+    @medical_record.creator = current_user.user_type
+    @medical_record.date = Date.today
+    @medical_record.doctor = current_user.doctor? ? current_user.doctor : nil
+    params[:medical_record][:symptoms].each do |symptom|
+      @medical_record.symptoms.push(symptom) if symptom != ""
     end
-    @info = Ocr.extract_text(image)
+
+    authorize @medical_record
+    @patient = Patient.find(params[:id])
+    authorize @patient
+    @patient.update(patient_params)
+    if Rails.env == "development"
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@patient.id_card.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+    else
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@patient.id_card.key}"
+    end
+    @infos = Ocr.locate_text(image, @patient)
     render "medical_records/ocr_form.html"
   end
 
