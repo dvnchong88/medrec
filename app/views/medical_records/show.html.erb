@@ -1,5 +1,47 @@
 <div class="container mb-5 pb-5">
-  <div class="card-category-medical">
+  <div class="card-category-profile">
+    <h1><strong>Patient Info:</strong></h1>
+    <h5><strong>Name:</strong> <%= "#{@medical_record.patient.last_name}" %>, <%= "#{@medical_record.patient.first_name}" %></h5>
+    <h5><strong>Date of Birth:</strong> <%= "#{@medical_record.patient.date_of_birth}" %></h5>
+    <h5><%= "#{@medical_record.patient.sex}" %></h5>
+    <h5><i class="fas fa-tint"></i> Type: <%= "#{@medical_record.patient.blood_type}" %></h5>
+    <h5><%= "#{@medical_record.patient.weight}" %> kg, <%= "#{@medical_record.patient.height}" %> cm</h5>
+    <h5><strong>Allergies: <%= "#{@medical_record.patient.allergies}" %></strong></h5>
+    <h5><strong>Nationality:</strong> <%= "#{@medical_record.patient.nationality}" %></h5>
+    <h5><strong>Traveled From Abroad:</strong> <%= @medical_record.patient.traveled_from_abroad? ? "Yes" : "No" %></h5>
+    <% if @medical_record.patient.smoker? %>
+      <i class="fas fa-smoking"></i>
+    <% end %>
+    <% if @medical_record.prescribed_medicine? %>
+      <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
+    <% end %>
+    <% if @medical_record.patient.health_problems? %>
+      <h5><strong>Health Problems:</strong> <%= "#{@medical_record.patient.health_problems}" %></h5>
+    <% end %>
+    <% if @medical_record.patient.family_health_problems? %>
+      <h5><strong>Family Health Problems:</strong> <%= "#{@medical_record.patient.family_health_problems}" %></h5>
+    <% end %>
+    <% if @medical_record.patient.usual_medication? %>
+      <h5><strong>Usual Medication:</strong> <%= "#{@medical_record.patient.usual_medication}" %></h5>
+    <% end %>
+    <h1><strong>Visit Info:</strong></h1>
+    <h5><strong>Symptoms:</strong> </h5>
+    <ul>
+      <% @medical_record.symptoms.each do |symptom| %>
+        <li><%= "#{symptom}" %></li>
+      <% end %>
+    </ul>
+    <% if @medical_record.problem_since? %>
+      <h5><strong>Since:</strong> <%= "#{@medical_record.problem_since}" %></h5>
+    <% end %>
+    <% if @medical_record.diagnosis? %>
+      <h5><strong>Diagnosis:</strong> <%= "#{@medical_record.diagnosis}" %></h5>
+    <% end %>
+    <div data-controller="lightbox">
+      <% @medical_record.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
+      <% end %>
+    </div>
     <% if @medical_record.doctor_id? %>
       <h5>Doctor name: </h5>
       <p><%= "#{@medical_record.doctor.first_name}" %></p>
@@ -7,22 +49,5 @@
       <h5>Doctor name: </h5>
       <p><%= "#{@medical_record.doctor_name}" %></p>
     <% end %>
-    <h5>Patient name: </h5>
-    <p><%= "#{@medical_record.patient.first_name}" %></p>
-    <h5>Symptoms: </h5>
-    <ul>
-      <% @medical_record.symptoms.each do |symptom| %>
-        <li><%= "#{symptom}" %></li>
-      <% end %>
-    </ul>
-    <% if @medical_record.diagnosis? %>
-      <h5>Diagnosis: </h5>
-      <p><%= "#{@medical_record.diagnosis}" %></p>
-    <% end %>
-    <div data-controller="lightbox">
-      <% @medical_record.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
-      <% end %>
-    </div>
   </div>
 </div>

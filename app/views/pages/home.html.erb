@@ -1,8 +1,11 @@
 <div class="background" style="padding: 0; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)) url(images/newbackground3.jpg);">
-  <div class="overlay">
-    <div class="container mb-3">
-      <%= image_tag("newlogo4.png", alt: "logo", style: 'width:100%;') %>
-      <%= link_to "ENTER", dashboard_path, class:"btn-gradient mt-3" %>
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.3); height: 100vh;">
+    <div class="container mb-3 d-flex-column">
+      <%= image_tag("newlogo4.png", alt: "logo", style: 'width:100%;', class:'mt-1') %>
+      <h1 class="mt-3 text-white"><strong>Take Your Health With You</strong></h1>
+      <%= link_to dashboard_path, class:"btn-gradient" do%>
+        <i class="fas fa-chevron-right mt-3 text-white"></i>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,31 +1,34 @@
 <div class="container mt-3">
   <h1>Medical History Form</h1>
   <div class="container mb-5 pb-5">
-    <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
-      <%= f.input :id_card, as: :file %> <!-- You can style / change to camera later -->
-      <%= f.submit 'Autofill', class: 'btn btn-light' %>
-    <% end %>
-<!--
-    <%= simple_form_for [current_user.patient, @medical_record] do |f| %>
-      <p>Name: <%= current_user.patient.first_name %> <%= current_user.patient.last_name %></p>
-      <p>Date of Birth: <%= current_user.patient.date_of_birth %></p>
-      <p>Age: <% now = Time.now.utc.to_date %>
-        <%= now.year - current_user.patient.date_of_birth.year - ((now.month > current_user.patient.date_of_birth.month || (now.month == current_user.patient.date_of_birth.month && now.day >= current_user.patient.date_of_birth.day)) ? 0 : 1) %>
-      </p>
-      <p>Home address: <%= current_user.patient.address %></p>
-      <p>Tel: <%= current_user.patient.phone_number %></p>
-      <p>Nationality: <%= current_user.patient.nationality %> </p>
-      <p>Insurance: <%= current_user.patient.insurance %> </p>
+
+ 
+    <p>Name: <strong><%= @medical_record.patient.first_name %> <%= @medical_record.patient.last_name %></strong></p>
+    <p>Date of Birth: <strong><%= @medical_record.patient.date_of_birth %></strong></p>
+    <p>Age: <strong>
+        <% now = Time.now.utc.to_date %>
+        <%= now.year - @medical_record.patient.date_of_birth.year - ((now.month > @medical_record.patient.date_of_birth.month || (now.month == @medical_record.patient.date_of_birth.month && now.day >= @medical_record.patient.date_of_birth.day)) ? 0 : 1) %>
+      </strong>
+    </p>
+    <p>Home address:<strong> <%= @medical_record.patient.address %></strong></p>
+    <p>Tel: <strong><%= @medical_record.patient.phone_number %></strong></p>
+    <p>Nationality: <strong><%= @medical_record.patient.nationality %></strong></p>
+    <p>Insurance: <strong><%= @medical_record.patient.insurance %></strong></p>
+    <%= simple_form_for [@medical_record.patient, @medical_record] do |f| %>
       <%= f.input :symptoms, as: :check_boxes, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true }, wrapper: :vertical_collection_inline %>
-      <p>Have you ever traveled from abroad? <%= current_user.patient.traveled_from_abroad ? "Yes": "No" %></p>
+      <p>Have you ever traveled from abroad? <strong><%= @medical_record.patient.traveled_from_abroad ? "Yes": "No" %></strong></p>
       <%= f.input :problem_since, as: :date, html5: true, label: "When did your problem(s) start?" %>
-      <p>Have you had any health problems in the past? <%= current_user.patient.health_problems ? "Yes": "No" %></p>
-      <p>Is there anyone in your family who has had health problems? <%= current_user.patient.family_health_problems ? "Yes": "No" %></p>
-      <p>If you have any drugs or allergies, please indicate the kind: <%= current_user.patient.allergies %></p>
-      <p>Do you usually take medicines? <%= current_user.patient.usual_medication ? "Yes"  : "No" %></p>
-      <p class="mt-5">For women</p>
-      <p>Have you been pregnant? <%= current_user.patient.sex == "female" ? current_user.patient.pregnancy  : "" %></p>
-      <p>Are you lactating? <%= current_user.patient.sex == "female" ? current_user.patient.lactation  : "" %></p>
+      <p>Have you had any health problems in the past? <strong><%= @medical_record.patient.health_problems %></strong></p>
+      <p>Is there anyone in your family who has had health problems? <strong><%= @medical_record.patient.family_health_problems %></strong></p>
+      <p>If you have any drugs or allergies, please indicate the kind: <strong><%= @medical_record.patient.allergies %></strong></p>
+      <p>Do you usually take medicines? <strong><%= @medical_record.patient.usual_medication %></strong></p>
+      <% if @medical_record.patient.female? %>
+        <p>Have you been pregnant? <strong><%= @medical_record.patient.pregnancy%></strong></p>
+        <p>Are you lactating? <strong><%= @medical_record.patient.lactation %></strong></p>
+      <% end %>
+      <% if current_user.user_type == "patient" %>
+        <%= f.input :doctor_name %>
+      <% end %>
       <%#= f.input :symptoms, as: :text %>
       <%# <% if :symptoms == "others" %>
       <%#= f.input :symptoms, as: :text %>
@@ -34,6 +37,5 @@
       <%= f.button :submit, "Save", class:"btn btn-primary mt-3" %>
       <%#= f.input :qr_code %>
     <% end %>
--->
   </div>
 </div>
