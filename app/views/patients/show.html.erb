@@ -1,16 +1,28 @@
 <div class="container mt-3 mb-5 pb-5 text-black">
   <h1>Your Personal Info</h1>
   <div class="card-category-profile">
-    <h4><i class="fas fa-signature"></i> <%= "#{@patient.first_name} #{@patient.last_name}" %></h4>
+     <h4><i class="fas fa-signature"></i> <%= "#{@patient.first_name} #{@patient.last_name}" %></h4>
     <h4><i class="far fa-calendar-alt"></i> <%= "#{@patient.date_of_birth}" %></h4>
+    <% if @patient.smoker? %>
+      <i class="fas fa-smoking"></i>
+    <% end %>
     <h4><i class="fas fa-venus-mars"></i> <%= "#{@patient.sex}" %></h4>
     <h4><i class="fas fa-tint"></i> Type <%= "#{@patient.blood_type}" %></h4>
     <h4><i class="fas fa-ruler"></i> <%= "#{@patient.height}" %> cm</h4>
     <h4><i class="fas fa-weight"></i> <%= "#{@patient.weight}" %> kg</h4>
     <h4><i class="fas fa-phone-volume"></i> <%= "#{@patient.phone_number}" %></h4>
-    <h4><i class="fas fa-smoking"></i> <%= @patient.smoker? %></h4>
-    <h4><i class="fas fa-allergies"></i> <%= "#{@patient.allergies}" %></h4>
+    <h4><i class="fas fa-allergies"></i> <%= "#{@patient.allergies}" %></h4>    
     <h4><i class="fas fa-address-book"></i> <%= "#{@patient.emergency_contact}" %> </h4>
+    <h4><strong>Insurance:</strong> <%= "#{@patient.insurance}" %></h4>
+    <h4><strong>Nationality:</strong> <%= "#{@patient.nationality}" %></h4>
+    <h4><strong>Traveled From Abroad:</strong> <%= @patient.traveled_from_abroad? ? "Yes" : "No" %></h4>
+    <% if @patient.female? %>
+      <h4><strong>Pregnancy:</strong> <%= @patient.pregnancy? ? "Yes" : "No" %></h4>
+      <h4><strong>Lactating:</strong> <%= @patient.lactation? ? "Yes" : "No" %></h4>
+    <% end %>
+    <h4><strong>Health Problems:</strong> <%= "#{@patient.health_problems}" %></h4>
+    <h4><strong>Family Health Problems:</strong> <%= "#{@patient.family_health_problems}" %></h4>
+    <h4><strong>Usual Medication:</strong> <%= "#{@patient.usual_medication}" %></h4>
   </div>
   <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary mb-3" %>
 </div>
