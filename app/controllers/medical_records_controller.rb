@@ -20,7 +20,7 @@ class MedicalRecordsController < ApplicationController
     else
       image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@medical_record.photo_form.key}"
     end
-    @infos = Ocr.locate_text(image, @medical_record.patient)
+    @infos = Ocr.locate_text(image, @medical_record)
   end
 
   def create
@@ -51,12 +51,9 @@ class MedicalRecordsController < ApplicationController
   def update
     # raise StandardError, 'NotAuthorized' unless @restaurant.user == current_user
     @medical_record = MedicalRecord.find(params[:id])
-    params[:medical_record][:symptoms].each do |symptom|
-      @medical_record.symptoms.push(symptom) if symptom != ""
-    end
     authorize @medical_record
     if @medical_record.update(record_params)
-      redirect_to patient_medical_records_path(@medical_record.patient), notice: 'Record was successfully updated.'
+      redirect_to patient_medical_record_path(@medical_record.patient, @medical_record), notice: 'Record was successfully updated.'
     else
       render :edit
     end
@@ -95,6 +92,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :photo_form, :doctor_name, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :photo_form, :doctor_name, :diagnosis, :creator, :date, :prescribed_medicine, photos: [], symptoms: [])
   end
 end
