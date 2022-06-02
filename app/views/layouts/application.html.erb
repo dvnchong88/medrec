@@ -24,10 +24,10 @@
           <%= render 'shared/navbar' %>
         <% end %>
       </div>
+      <%= render 'shared/flashes' %>
       <div class="page-frame-body">
         <%= yield %>
       </div>
-      <%= render 'shared/flashes' %>
       <% unless @hide_footer %>
         <div class="page-frame-footer">
           <%= render 'shared/footer' %>
