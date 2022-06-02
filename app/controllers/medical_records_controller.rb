@@ -65,6 +65,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :doctor_name, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :doctor_name, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, :condition_id, photos: [])
   end
 end

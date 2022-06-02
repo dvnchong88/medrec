@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_013325) do
+ActiveRecord::Schema.define(version: 2022_06_02_112655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2022_06_02_013325) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "conditions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "patient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_conditions_on_patient_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -67,6 +75,12 @@ ActiveRecord::Schema.define(version: 2022_06_02_013325) do
     t.index ["patient_id"], name: "index_events_on_patient_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "medical_records", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.text "diagnosis"
@@ -80,6 +94,9 @@ ActiveRecord::Schema.define(version: 2022_06_02_013325) do
     t.string "doctor_name"
     t.string "symptoms", default: [], array: true
     t.date "problem_since"
+    t.string "type"
+    t.bigint "condition_id"
+    t.index ["condition_id"], name: "index_medical_records_on_condition_id"
     t.index ["doctor_id"], name: "index_medical_records_on_doctor_id"
     t.index ["patient_id"], name: "index_medical_records_on_patient_id"
   end
@@ -129,6 +146,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_013325) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "doctors", "users"
   add_foreign_key "events", "patients"
+  add_foreign_key "medical_records", "conditions"
   add_foreign_key "medical_records", "doctors"
   add_foreign_key "medical_records", "patients"
   add_foreign_key "patients", "users"
