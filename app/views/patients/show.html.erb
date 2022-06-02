@@ -6,12 +6,12 @@
     <p><%= "#{@patient.last_name}, #{@patient.first_name}" %></p>
     <h4>Date of Birth: </h4>
     <p><%= "#{@patient.date_of_birth}" %></p>
-    <h4><i class="fas fa-venus-mars"></i> <%= "#{@patient.sex.capitalize}" %></h4>
+    <h4><i class="fas fa-venus-mars"></i> <%= "#{@patient.sex}" %></h4>
     <h4><i class="fas fa-tint"></i> Type <%= "#{@patient.blood_type}" %></h4>
     <h4><i class="fas fa-ruler"></i> <%= "#{@patient.height}" %> cm</h4>
     <h4><i class="fas fa-weight"></i> <%= "#{@patient.weight}" %> kg</h4>
     <h4><i class="fas fa-phone-volume"></i> <%= "#{@patient.phone_number}" %></h4>
-    <h4><i class="fas fa-smoking"></i> <%= @patient.smoker?%></h4>
+    <h4><i class="fas fa-smoking"></i> <%= @patient.smoker? %></h4>
     <h4>Allergies: </h4>
     <p><%= "#{@patient.allergies}" %></p>
     <h4>Emergency Contact: </h4>
