@@ -28,78 +28,66 @@ class Ocr
       problem_since_info = image.responses.first.text_annotations.find { |ano| ano.description == "start" }
       big_no_infos = image.responses.first.text_annotations.find { |ano| ano.description == "N" }
       no_infos = image.responses.first.text_annotations.select { |ano| ano.description == "no" }
-      puts
-      puts
-      puts
-      p name_info.description
-      p name_info.bounding_poly.vertices
-      puts
-      puts
-      p other_info.description
-      p other_info.bounding_poly.vertices
-      puts
-      puts
-      puts
-      puts
+
       infos = [
         {
-          description: name_info.description,
+          description: name_info&.description,
           text: "#{patient.first_name} #{patient.last_name}",
           location: get_location(name_info),
           class: "mark",
           style: "margin-left: 200px;"
         },
         {
-          description: birth_info.description,
+          description: birth_info&.description,
           text: "#{patient.date_of_birth.year}_______#{patient.date_of_birth.month}________#{patient.date_of_birth.day}",
           location: get_location(birth_info),
           class: "",
           style: "margin-left: 450px;"
         },
         {
-          description: age_info.description,
+          description: age_info&.description,
           text:  "#{Time.now.utc.to_date.year - patient.date_of_birth.year - ((Time.now.utc.to_date.month > patient.date_of_birth.month || (Time.now.utc.to_date.month == patient.date_of_birth.month && Time.now.utc.to_date.day >= patient.date_of_birth.day)) ? 0 : 1) }",
           location: get_location(age_info),
           class: "mark",
           style: "margin-left: 200px;"
         },
         {
-          description: address_info.description,
+          description: address_info&.description,
           text: "#{patient.address}",
           location: get_location(address_info),
           class: "mark",
           style: "margin-left: 200px;"
         },
         {
-          description: tel_info.description,
+          description: tel_info&.description,
           text: "#{patient.phone_number}",
           location: get_location(tel_info),
           class: "mark",
           style: "margin-left: 300px;"
         },
         {
-          description: nationality_info.description,
+          description: nationality_info&.description,
           text: "#{patient.nationality}",
           location: get_location(nationality_info),
           class: "mark",
           style: "margin-left: 80px;"
         },
         {
-          description: insurance_info.description,
+          description: insurance_info&.description,
           text: "✔️",
           location: get_location(insurance_info),
           class: "mark",
           style: "margin-left: 200px;"
         },
         {
-          description: other_info.description,
+          description: other_info&.description,
           text: "<input type='text' name='medical_record[symptoms][]' value='#{medical_record.symptoms.join(', ')}'>".html_safe,
           location: get_location(other_info),
           class: "mark",
           style: "margin-top: 75px; margin-left: -200px; background-color: transparent"
         },
         {
-          description: problem_since_info.description,
+          description: problem_since_info&.description,
           text: "<input type='date' name='medical_record[problem_since]' value='#{medical_record.problem_since}'>".html_safe,
           location: get_location(problem_since_info),
           class: "mark",
@@ -113,34 +101,33 @@ class Ocr
           style: ""
         }
       ]
-      no_infos.each do |no_question|
+      no_infos&.each do |no_question|
         infos << {
-          description: no_question.description,
+          description: no_question&.description,
           text: "⭕️",
           location: get_location(no_question),
           class: "",
           style: ""
         }
       end
-      return infos
-      big_no_infos.each do |big_no_question|
-        big_no_infos << {
-          description: big_no_question.description,
+      big_no_infos&.each do |big_no_question|
+        infos << {
+          description: big_no_question&.description,
           text: "⭕️",
           location: get_location(big_no_question),
           class: "",
           style: ""
         }
       end
-      return big_no_infos
+      return infos
     rescue OpenURI::HTTPError
       return []
     end
   end
 
-  def get_location(info)
+  def self.get_location(info)
     return [] unless info
 
-    [info.bounding_poly.vertices[1].y, info.bounding_poly.vertices[1].x]
+    [info.bounding_poly.vertices[1].x, info.bounding_poly.vertices[1].y]
   end
 end
