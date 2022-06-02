@@ -114,7 +114,7 @@
 .card-category-profile {
   background-size: cover;
   background-position: center;
-  height: 556px;
+  height: 436px;
   width: 100%;
   margin-top: inherit;
   margin-bottom: 16px;
@@ -127,5 +127,5 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
 }

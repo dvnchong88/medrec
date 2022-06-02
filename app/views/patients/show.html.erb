@@ -1,20 +1,16 @@
 <div class="container mt-3 mb-5 pb-5 text-black">
   <h1>Your Personal Info</h1>
   <div class="card-category-profile">
-    <h4>Full Name: </h4>
-    <p><%= "#{@patient.last_name}, #{@patient.first_name}" %></p>
-    <h4>Date of Birth: </h4>
-    <p><%= "#{@patient.date_of_birth}" %></p>
+    <h4><i class="fas fa-signature"></i> <%= "#{@patient.first_name} #{@patient.last_name}" %></h4>
+    <h4><i class="far fa-calendar-alt"></i> <%= "#{@patient.date_of_birth}" %></h4>
     <h4><i class="fas fa-venus-mars"></i> <%= "#{@patient.sex}" %></h4>
     <h4><i class="fas fa-tint"></i> Type <%= "#{@patient.blood_type}" %></h4>
     <h4><i class="fas fa-ruler"></i> <%= "#{@patient.height}" %> cm</h4>
     <h4><i class="fas fa-weight"></i> <%= "#{@patient.weight}" %> kg</h4>
     <h4><i class="fas fa-phone-volume"></i> <%= "#{@patient.phone_number}" %></h4>
     <h4><i class="fas fa-smoking"></i> <%= @patient.smoker? %></h4>
-    <h4>Allergies: </h4>
-    <p><%= "#{@patient.allergies}" %></p>
-    <h4>Emergency Contact: </h4>
-    <p><%= "#{@patient.emergency_contact}" %></p>
+    <h4><i class="fas fa-allergies"></i> <%= "#{@patient.allergies}" %></h4>
+    <h4><i class="fas fa-address-book"></i> <%= "#{@patient.emergency_contact}" %> </h4>
   </div>
   <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary mb-3" %>
 </div>
