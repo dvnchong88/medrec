@@ -3,6 +3,7 @@
   <% @patients.each do |patient| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
       <div class="item-drawer-content">
+        <%= image_tag (patient.photo.attached? ? cl_image_path(patient.photo.key) : "user.png"), class: "avatar" %>
         <h3><%= patient.last_name%>, <%= patient.first_name %></h3>
       </div>
       <div  data-action="click->drawer#open"  class="item-drawer-button">

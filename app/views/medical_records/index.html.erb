@@ -1,6 +1,6 @@
 <div class="container mt-3 mb-5 pb-5">
   <% if current_user.doctor? %>
-    <h1><%= @patient.first_name%>'s Medical History</h1>
+    <h1><%= image_tag (@patient.photo.attached? ? cl_image_path(@patient.photo.key) : "user.png"), class: "avatar" %><%= @patient.first_name%>'s Medical History</h1>
   <% else %>
     <h1>Medical History</h1>
   <% end %>
