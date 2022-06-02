@@ -15,12 +15,14 @@ class MedicalRecordsController < ApplicationController
   def show
     @medical_record = MedicalRecord.find(params[:id])
     authorize @medical_record
-    if Rails.env == "development"
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
-    else
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@medical_record.photo_form.key}"
+    if @medical_record.photo_form.attached?
+      if Rails.env == "development"
+        image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+     else
+       image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+      end
+      @infos = Ocr.locate_text(image, @medical_record)
     end
-    @infos = Ocr.locate_text(image, @medical_record)
   end
 
   def create
@@ -74,9 +76,9 @@ class MedicalRecordsController < ApplicationController
     authorize @patient
     @patient.update(patient_params)
     if Rails.env == "development"
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@patient.id_card.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+      image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@patient.id_card.key}"#helpers.url_for(@cosmetic.cosmetic_image)
     else
-      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@patient.id_card.key}"
+      image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@patient.id_card.key}"
     end
     @infos = Ocr.locate_text(image, @patient)
     render "medical_records/ocr_form.html"
@@ -92,6 +94,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :photo_form, :doctor_name, :diagnosis, :creator, :date, :prescribed_medicine, photos: [], symptoms: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :photo_form, :doctor_name, :problem_since, :diagnosis, :creator, :date, :prescribed_medicine, photos: [], symptoms: [])
   end
 end
