@@ -3,6 +3,7 @@
   <h1> Dr. <%= current_user.doctor.last_name %></h1>
   <% @medical_records.each do |medical_record| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
+      <%= image_tag (medical_record.patient.photo.attached? ? cl_image_path(medical_record.patient.photo.key) : "user.png"), class: "avatar" %>
       <div class="item-drawer-content">
         <h3><strong><%= medical_record.patient.last_name %>, <%= medical_record.patient.first_name %></strong></h3>
         <h3>Symptoms: </h3>
