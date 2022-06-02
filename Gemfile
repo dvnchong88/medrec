@@ -42,7 +42,7 @@ gem "rqrcode", "~> 2.0"
 gem "simple_calendar", "~> 2.4"
 gem 'google-api-client'
 gem 'google-cloud-vision'
-
+gem "mini_magick"
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
