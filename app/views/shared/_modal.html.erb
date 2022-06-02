@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
           <div class="qr-code mt-3 d-flex justify-content-center">
-            <%= current_user.patient.qr_code("https://medrec858.herokuapp.com/#{patient_medical_records_path(current_user.patient.id)}").html_safe %>
+            <%= current_user.patient.qr_code("https://www.medrec-858.me/#{patient_medical_records_path(current_user.patient.id)}").html_safe %>
           </div>
         </div>
         <div class="modal-footer">
