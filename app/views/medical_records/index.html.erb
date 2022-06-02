@@ -8,8 +8,8 @@
   <% @medical_records.each do |medical_record| %>
     <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
       <div class="item-drawer-content">
+        <h3>Chronic Illnesses </h3>
         <h3><strong><%= medical_record.date %></strong></h3>
-        <h3>Symptoms: </h3>
         <% if medical_record.symptoms? %>
           <li><%= medical_record.symptoms[0] %></li>
           <p><%#= medical_record.symptoms %></p>
