@@ -76,7 +76,8 @@
       <p class="w-75">Medications: <%= "#{@patient.usual_medication}" %></p>
     </div>
     <div>
-      <h3>Conditions</h3>
+      <br>
+      <h4>Conditions</h4>
       <% current_user.patient.conditions.each do |condition| %>
         <%= link_to condition.name, condition_path(condition) %>
       <% end %>
