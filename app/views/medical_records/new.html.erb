@@ -16,10 +16,10 @@
       <%= f.input :symptoms, as: :check_boxes, collection: MedicalRecord::SYMPTOMS, input_html: { multiple: true }, wrapper: :vertical_collection_inline %>
       <p>Have you ever traveled from abroad? <strong><%= @medical_record.patient.traveled_from_abroad ? "Yes": "No" %></strong></p>
       <%= f.input :problem_since, as: :date, html5: true, label: "When did your problem(s) start?" %>
-      <p>Have you had any health problems in the past? <strong><%= @medical_record.patient.health_problems ? "Yes": "No" %></strong></p>
-      <p>Is there anyone in your family who has had health problems? <strong><%= @medical_record.patient.family_health_problems ? "Yes": "No" %></strong></p>
+      <p>Have you had any health problems in the past? <strong><%= @medical_record.patient.health_problems %></strong></p>
+      <p>Is there anyone in your family who has had health problems? <strong><%= @medical_record.patient.family_health_problems %></strong></p>
       <p>If you have any drugs or allergies, please indicate the kind: <strong><%= @medical_record.patient.allergies %></strong></p>
-      <p>Do you usually take medicines? <strong><%= @medical_record.patient.usual_medication ? "Yes"  : "No" %></strong></p>
+      <p>Do you usually take medicines? <strong><%= @medical_record.patient.usual_medication %></strong></p>
       <% if @medical_record.patient.female? %>
         <p>Have you been pregnant? <strong><%= @medical_record.patient.pregnancy%></strong></p>
         <p>Are you lactating? <strong><%= @medical_record.patient.lactation %></strong></p>
