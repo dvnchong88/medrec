@@ -22,7 +22,7 @@ class Ocr
     tel_info = image.responses.first.text_annotations.find { |ano| ano.description == "Tel" }
     birth_info = image.responses.first.text_annotations.find { |ano| ano.description == "Birth" }
     insurance_info = image.responses.first.text_annotations.find { |ano| ano.description == "Insurance" }
-    symptom_info = image.responses.first.text_annotations.find { |ano| ano.description == "ache" }
+    other_info = image.responses.first.text_annotations.find { |ano| ano.description == "Others" }
     puts
     puts
     puts
@@ -67,9 +67,9 @@ class Ocr
         location: [insurance_info.bounding_poly.vertices[1].y, insurance_info.bounding_poly.vertices[1].x]
       },
       {
-        description: symptom_info.description,
+        description: other_info.description,
         text: "✔️",
-        location: [symptom_info.bounding_poly.vertices[0].y, symptom_info.bounding_poly.vertices[0].x]
+        location: [other_info.bounding_poly.vertices[1].y, other_info.bounding_poly.vertices[1].x]
       }
     ]
   end
