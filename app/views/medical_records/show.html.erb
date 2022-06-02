@@ -53,7 +53,7 @@
   <% if @medical_record.photo_form.attached?%>
     <div class="resize-wrapper" data-controller="resize">
       <div class="resize-element">
-        <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>)" class="position-relative">
+        <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>);background-repeat: no-repeat;" class="position-relative">
           <%= simple_form_for @medical_record do |f| %>
             <% @infos.each do |info| %>
               <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
@@ -64,5 +64,5 @@
         </div>
       </div>
     </div>
-  <%end%>
+  <% end %>
 </div>
