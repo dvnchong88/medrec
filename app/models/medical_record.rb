@@ -3,6 +3,7 @@ class MedicalRecord < ApplicationRecord
   belongs_to :doctor, optional: true, default: false
   has_many_attached :photos
   belongs_to :condition, optional: true
+  has_one_attached :photo_form
   enum creator: { patient: 0, doctor: 1 }
   enum type: { chronic_illnesses: 0, surgeries: 1, physical_injuries: 2 }
 

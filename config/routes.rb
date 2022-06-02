@@ -10,24 +10,14 @@ Rails.application.routes.draw do
       patch "autofill"
     end
   end
+  resources :medical_records, only: [:update]
   resources :doctors, only: [:show, :new, :create, :update, :edit]
   namespace :doctor do
     resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
   resources :events, only: [:index, :show, :new, :create, :update, :edit, :destroy]
   get "calendar", to: "pages#calendar", as: "calendar"
-  get "/map", to: "pages#map", as: "map", as: "map"
-
-  namespace :chronic_illnesses do
-    resources :medical_records, only: [:index]
-  end
-  namespace :surgeries do
-    resources :medical_records, only: [:index]
-  end
-
-  namespace :physical_injuries do
-    resources :medical_records, only: [:index]
-  end
+  get "/map", to: "pages#map", as: "map"
 
   resources :conditions, only: [:show, :new, :create]
 end
