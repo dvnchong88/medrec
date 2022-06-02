@@ -37,11 +37,12 @@ class PatientsController < ApplicationController
     authorize @patient
     @patient.update(patient_params)
     if Rails.env == "development"
-      image = "https://res.cloudinary.com/dystex7k9/image/upload/v1/development/#{@patient.id_card.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@patient.id_card.key}"#helpers.url_for(@cosmetic.cosmetic_image)
     else
-      image = "https://res.cloudinary.com/dystex7k9/image/upload/v1/production/#{@patient.id_card.key}"
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@patient.id_card.key}"
     end
-    @info = Ocr.extract_text(image)
+    @infos = Ocr.locate_text(image, @patient)
+    render "medical_records/ocr_form.html"
   end
 
   def show

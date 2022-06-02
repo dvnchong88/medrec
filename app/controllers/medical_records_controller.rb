@@ -21,6 +21,7 @@ class MedicalRecordsController < ApplicationController
     @medical_record = MedicalRecord.new(record_params)
     @medical_record.patient = Patient.find(params[:patient_id])
     @medical_record.creator = current_user.user_type
+    @medical_record.date = Date.today
     @medical_record.doctor = current_user.doctor? ? current_user.doctor : nil
     params[:medical_record][:symptoms].each do |symptom|
       @medical_record.symptoms.push(symptom) if symptom != ""
@@ -55,6 +56,18 @@ class MedicalRecordsController < ApplicationController
     end
   end
 
+  def autofill
+    @medical_record = MedicalRecord.new(record_params)
+    authorize @medical_record
+    if Rails.env == "development"
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+    else
+      image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1/production/#{@medical_record.photo_form.key}"
+    end
+    @info = Ocr.extract_text(image)
+    render "medical_records/ocr_form.html"
+  end
+
   def destroy
     @medical_record = MedicalRecord.find(params[:id])
     authorize @medical_record
@@ -65,6 +78,6 @@ class MedicalRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:medical_record).permit(:patient_id, :doctor_id, :doctor_name, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
+    params.require(:medical_record).permit(:patient_id, :doctor_id, :photo_form, :doctor_name, :diagnosis, :symptoms, :creator, :date, :prescribed_medicine, photos: [])
   end
 end
