@@ -1,4 +1,4 @@
-<div class="container mb-5 pb-5">
+<div class="ocr container mb-5 pb-5">
   <div class="card-category-profile">
     <h1><strong>Patient Info:</strong></h1>
     <h5><strong>Name:</strong> <%= "#{@medical_record.patient.last_name}" %>, <%= "#{@medical_record.patient.first_name}" %></h5>
@@ -50,7 +50,11 @@
       <p><%= "#{@medical_record.doctor_name}" %></p>
     <% end %>
   </div>
+</div>
+<div class="container">
   <% if @medical_record.photo_form.attached?%>
+<button onclick="window.print();" class="noPrint">PRINT</button>
+<button onclick="navigator.share('test');" class="noPrint">SHARE</button>
     <div class="resize-wrapper" data-controller="resize">
       <div class="resize-element">
         <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>);background-repeat: no-repeat;" class="position-relative">
