@@ -9,12 +9,12 @@
       <div class="col"><%= f.input :last_name %></div>
       <div class="col"><%= f.input :first_name %></div>
     </div>
-    <%= f.input :date_of_birth, start_year: Time.now.year - 100, selected: 1990 %>
+    <%= f.input :date_of_birth, start_year: Time.now.year - 100  %>
     <div class="row">
       <div class="col"><%= f.input :sex, collection: Patient.sexes.keys %></div>
       <div class="col"><%= f.input :blood_type, :collection => %w[A+ B+ AB+ O+ A- B- AB- O-] %></div>
-      <div class="col"><%= f.input :height, as: :select, collection: (0..250), label: "Height (cm)", selected: 150 %></div>
-      <div class="col"><%= f.input :weight, as: :select, collection: (0..200),label: "Weight (kg)", selected: 50 %></div>
+      <div class="col"><%= f.input :height, as: :select, collection: (0..250), label: "Height (cm)" %></div>
+      <div class="col"><%= f.input :weight, as: :select, collection: (0..200),label: "Weight (kg)" %></div>
       <div class="col"><%= f.input :nationality, as: :select, collection: Patient.nationalities.keys %></div>
       <div class="col"><%= f.input :insurance, as: :select, collection: Patient.insurances.keys %></div>
     </div>
@@ -23,6 +23,14 @@
     <%= f.input :phone_number %>
     <%= f.input :emergency_contact %>
     <%= f.input :smoker %>
+    <%= f.input :traveled_from_abroad %>
+    <% if @patient.sex == "female" %>
+      <%= f.input :pregnancy %>
+      <%= f.input :lactation %>
+    <% end %>
+    <%= f.input :health_problems %>
+    <%= f.input :family_health_problems %>
+    <%= f.input :usual_medication %>
     <%= f.input :photo, as: :file %>
     <%= f.submit value: "Save", class: "btn btn-primary"%>
   <% end %>
