@@ -4,10 +4,14 @@
   <% else %>
     <h1>Medical History</h1>
   <% end %>
-  <% @conditions.each do |condition| %>
-    <%= render "condition", condition: condition  %>
-  <% end %>
-</div>
-<%= link_to "Scan New Medical Record", patient_scan_path(@patient), class:"btn btn-primary mt-3 mb-3" %>
-<%= link_to "Input New Condition", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
+  <%# <%= link_to condition_path do  %>
+    <div class="item-drawer">
+      <%= "General" %>
+    </div>
+    <%# <% end %>
+    <% @conditions.each do |condition| %>
+      <%= render "condition", condition: condition  %>
+    <% end %>
+  </div>
+  <%= link_to "Upload Medical Details", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
 </div>
