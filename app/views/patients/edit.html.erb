@@ -16,6 +16,7 @@
       <div class="col"><%= f.input :height, as: :select, collection: (0..250), label: "Height (cm)" %></div>
       <div class="col"><%= f.input :weight, as: :select, collection: (0..200),label: "Weight (kg)" %></div>
       <div class="col"><%= f.input :nationality, as: :select, collection: Patient.nationalities.keys %></div>
+      <div class="col"><%= f.input :traveled_from_abroad %></div>
       <div class="col"><%= f.input :insurance, as: :select, collection: Patient.insurances.keys %></div>
     </div>
     <%= f.input :allergies %>
@@ -23,7 +24,6 @@
     <%= f.input :phone_number %>
     <%= f.input :emergency_contact %>
     <%= f.input :smoker %>
-    <%= f.input :traveled_from_abroad %>
     <% if @patient.sex == "female" %>
       <%= f.input :pregnancy %>
       <%= f.input :lactation %>
