@@ -10,9 +10,11 @@
     <h5>Patient name: </h5>
     <p><%= "#{@medical_record.patient.first_name}" %></p>
     <h5>Symptoms: </h5>
-    <% @medical_record.symptoms.each do |symptom| %>
-      <p><%= "#{symptom}" %></p>
-    <% end %>
+    <ul>
+      <% @medical_record.symptoms.each do |symptom| %>
+        <li><%= "#{symptom}" %></li>
+      <% end %>
+    </ul>
     <% if @medical_record.diagnosis? %>
       <h5>Diagnosis: </h5>
       <p><%= "#{@medical_record.diagnosis}" %></p>
