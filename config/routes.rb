@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       patch "autofill"
     end
   end
+  resources :medical_records, only: [:update]
   resources :doctors, only: [:show, :new, :create, :update, :edit]
   namespace :doctor do
     resources :medical_records, only: [:index, :new, :create, :edit, :update, :destroy, :show]
