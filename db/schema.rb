@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_073232) do
+ActiveRecord::Schema.define(version: 2022_06_02_013325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,10 +103,11 @@ ActiveRecord::Schema.define(version: 2022_06_01_073232) do
     t.integer "insurance"
     t.integer "nationality"
     t.boolean "traveled_from_abroad"
-    t.string "family_health_problems", default: [], array: true
-    t.string "usual_medication", default: [], array: true
     t.boolean "pregnancy"
     t.boolean "lactation"
+    t.string "health_problems"
+    t.string "family_health_problems"
+    t.string "usual_medication"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
