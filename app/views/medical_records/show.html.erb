@@ -64,14 +64,14 @@
         <li><%= "#{symptom}" %></li>
       <% end %>
     </ul>
-    <% if @medical_record.prescribed_medicine? %>
-      <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
-    <% end %>
     <% if @medical_record.problem_since? %>
       <h5><strong>Since:</strong> <%= "#{@medical_record.problem_since}" %></h5>
     <% end %>
     <% if @medical_record.diagnosis? %>
-      <h5><strong>Diagnosis:</strong> <%= "#{@medical_record.diagnosis}" %></h5>
+      <h5 class="mark"><strong>Diagnosis:</strong> <%= "#{@medical_record.diagnosis}" %></h5>
+    <% end %>
+    <% if @medical_record.prescribed_medicine? %>
+      <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
     <% end %>
     <div data-controller="lightbox">
       <% @medical_record.photos.each do |photo| %>
