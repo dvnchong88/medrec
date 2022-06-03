@@ -1,3 +1,8 @@
+import { Controller } from "stimulus"
+
+export default class extends Controller {
+  static targets = [ "lightbox" ]
+  connect() {
 window.onload = () => {
   // (A) GET LIGHTBOX & ALL .ZOOMD IMAGES
   let all = document.getElementsByClassName("zoomD"),
@@ -20,3 +25,5 @@ window.onload = () => {
     lightbox.className = "";
   };
 };
+}
+}

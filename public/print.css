@@ -6,6 +6,11 @@ body {
   display: none;
 }
 
+input, .mark {
+  background: transparent;
+  border: none;
+}
+
 .to-print {
   margin: 0 !important;
   padding: 0 !important;
@@ -20,4 +25,8 @@ body {
 
 .to-print .resize-element {
   transform: scale(calc(0.80 * 0.262235)) translate(-1115.5px, -1487.33px) !important;
+}
+
+#button-update {
+  display: none;
 }
