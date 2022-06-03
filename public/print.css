@@ -2,9 +2,7 @@ body {
   margin: 0 !important;
 }
 
-.ocr.container:first-child,
-.page-frame-content,
-.page-frame-footer, .noPrint, .alert {
+.no-print, .page-frame-content, .page-frame-footer, .alert {
   display: none;
 }
 
