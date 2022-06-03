@@ -1,5 +1,5 @@
-<div class="ocr container">
-  <div class="card-category-profile">
+<div class="container mb-5 pb-5">
+  <div class="card-category-profile no-print">
     <h1><strong>Patient Info:</strong></h1>
     <h5><strong>Name:</strong> <%= "#{@medical_record.patient.last_name}" %>, <%= "#{@medical_record.patient.first_name}" %></h5>
     <h5><strong>Date of Birth:</strong> <%= "#{@medical_record.patient.date_of_birth}" %></h5>
@@ -50,20 +50,21 @@
       <p><%= "#{@medical_record.doctor_name}" %></p>
     <% end %>
   </div>
-</div>
-<div class="container to-print mb-5 pb-5">
   <% if @medical_record.photo_form.attached?%>
-    <button onclick="window.print();" class="noPrint">PRINT</button>
-    <div class="resize-wrapper" data-controller="resize">
-      <div class="resize-element">
-        <div class="position-relative">
-          <%= simple_form_for @medical_record do |f| %>
-            <% @infos.each do |info| %>
-              <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
-                <span><%= info[:text] %></span>
-              </div>
+    <div class="to-print">
+      <button onclick="window.print();" class="no-print">PRINT</button>
+      <div data-controller="resize" class="resize-wrapper">
+        <div data-resize-target="toResize" class="resize-element">
+          <div class="position-relative">
+            <%= simple_form_for @medical_record do |f| %>
+              <% @infos.each do |info| %>
+                <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
+                  <span><%= info[:text] %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
+          <%= cl_image_tag(@medical_record.photo_form.key, height: 4032, width: 3024) %>
         </div>
         <%= cl_image_tag(@medical_record.photo_form.key) %>
       </div>
