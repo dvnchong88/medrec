@@ -1,3 +1,18 @@
-<% @medical_records.each do |medical_record| %>
-  <%= medical_record.date %>
-<% end %>
+<div class="container mt-3 d-flex" style="flex-direction:column; align-items: center;">
+  <h2>Other Records</h2>
+  <% @medical_records.each do |medical_record| %>
+    <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
+      <div class="item-drawer-content">
+        <h5><%= medical_record.date %></h5>
+        <p><%= medical_record.doctor_name %></p>
+      </div>
+      <div  data-action="click->drawer#open"  class="item-drawer-button">
+        <i class="fas fa-ellipsis-v fa-1x"></i>
+      </div>
+      <div class="item-drawer-settings">
+        <a href="<%= patient_medical_record_path(medical_record.patient, medical_record) %>"><i class="fas fa-folder-open fa-1x"></i></a>
+        <a href="<%= edit_patient_medical_record_path(medical_record.patient, medical_record) %>"><i class="fas fa-pencil-alt fa-1x"></i></a>
+      </div>
+    </div>
+  <% end %>
+</div>

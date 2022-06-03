@@ -1,2 +1,4 @@
-<%= @condition.name %>
-<%= render @condition.medical_records %>
+<div class="container mt-3 d-flex" style="flex-direction:column; align-items:center;">
+  <h2><%= @condition.name %></h2>
+  <%= render @condition.medical_records %>
+</div>
