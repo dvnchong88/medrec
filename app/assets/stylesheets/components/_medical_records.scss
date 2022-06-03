@@ -34,6 +34,25 @@
   margin-top: 8px;
 }
 
+.item-drawer-condition {
+  /*fixed*/
+  display: flex;
+  align-items: center;
+  /*customizable*/
+  height: 72px;
+  width: 700px;
+  max-width: 100%;
+/*   width: fit-content; */
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(0,0,0,0.3);
+  margin-top: 8px;
+  justify-content: center;
+  text-decoration: none;
+  background-color: #3889e4;
+  color: white;
+  font-size: 20px;
+}
+
 .item-drawer h2 {
   /*customizable*/
   margin: 0;

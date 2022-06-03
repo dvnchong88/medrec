@@ -75,13 +75,6 @@
       <i class="fas fa-capsules"></i>
       <p class="w-75">Medications: <%= "#{@patient.usual_medication}" %></p>
     </div>
-    <div class="condition">
-      <br>
-      <h4>Conditions</h4>
-      <% current_user.patient.conditions.each do |condition| %>
-        <p><%= link_to condition.name, condition_path(condition) %></p>
-      <% end %>
-    </div>
   </div>
   <%=link_to "Edit", edit_patient_path(current_user.patient), class: "btn btn-primary mb-3" %>
 </div>

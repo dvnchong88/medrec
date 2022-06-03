@@ -4,8 +4,10 @@
   <% else %>
     <h1>Medical History</h1>
   <% end %>
-  <%= link_to general_conditions_path do  %>
-    <div class="item-drawer d-flex justify-content-center">
+
+  <br>
+  <%= link_to general_conditions_path, style:"text-decoration:none;" do  %>
+    <div class="item-drawer-condition">
       <%= "General" %>
     </div>
   <% end %>
@@ -14,5 +16,5 @@
   <% end %>
 </div>
 <div class="container">
-  <%= link_to "Create New Condition", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
+  <%= link_to "Create New Condition", new_condition_path, class:"btn btn-primary mt-3 mb-3", style:"position: absolute; left: 12px; bottom: 130px;" %>
 </div>

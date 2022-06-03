@@ -1,31 +1,69 @@
 <div class="container mb-5 pb-5">
-  <div class="card-category-profile no-print">
-    <h1><strong>Patient Info:</strong></h1>
-    <h5><strong>Name:</strong> <%= "#{@medical_record.patient.last_name}" %>, <%= "#{@medical_record.patient.first_name}" %></h5>
-    <h5><strong>Date of Birth:</strong> <%= "#{@medical_record.patient.date_of_birth}" %></h5>
-    <h5><%= "#{@medical_record.patient.sex}" %></h5>
-    <h5><i class="fas fa-tint"></i> Type: <%= "#{@medical_record.patient.blood_type}" %></h5>
-    <h5><%= "#{@medical_record.patient.weight}" %> kg, <%= "#{@medical_record.patient.height}" %> cm</h5>
-    <h5><strong>Allergies: <%= "#{@medical_record.patient.allergies}" %></strong></h5>
-    <h5><strong>Nationality:</strong> <%= "#{@medical_record.patient.nationality}" %></h5>
-    <h5><strong>Traveled From Abroad:</strong> <%= @medical_record.patient.traveled_from_abroad? ? "Yes" : "No" %></h5>
-    <% if @medical_record.patient.smoker? %>
-      <i class="fas fa-smoking"></i>
-    <% end %>
+
+  <div class="card-category-profile">
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-signature"></i>
+      <p class="w-75"><%= "#{@medical_record.patient.first_name} #{@medical_record.patient.last_name}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="far fa-calendar-alt"></i>
+      <p class="w-75"><%= "#{@medical_record.patient.date_of_birth}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-venus-mars"></i>
+      <p class="w-75"><%= "#{@medical_record.patient.sex}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-ruler"></i>
+      <p class="w-75"><%= "#{@medical_record.patient.height}" %> cm</p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-weight"></i>
+      <p class="w-75"><%= "#{@medical_record.patient.weight}" %> kg</p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-plane"></i>
+      <p class="w-75">Traveled recently: <%= @medical_record.patient.traveled_from_abroad? ? "Yes" : "No" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <% if @medical_record.patient.smoker? %>
+        <i class="fas fa-smoking"></i>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-tint"></i>
+      <p class="w-75">Blood type: <%= "#{@medical_record.patient.blood_type}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-allergies"></i>
+      <p class="w-75">Allergies: <%= "#{@medical_record.patient.allergies}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <% if @medical_record.patient.female? %>
+        <i class="fas fa-baby"></i>
+        <p class="w-75"><%= @medical_record.patient.pregnancy? ? "Yes" : "No" %></p>
+        <i class="fas fa-jug"></i>
+        <p class="w-75"><%= @medical_record.patient.lactation? ? "Yes" : "No" %></p>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-heartbeat"></i>
+      <p class="w-75">Health problems: <%= "#{@medical_record.patient.health_problems}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-medkit"></i>
+      <p class="w-75">Family history: <%= "#{@medical_record.patient.family_health_problems}" %></p>
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <i class="fas fa-capsules"></i>
+      <p class="w-75">Medications: <%= "#{@medical_record.patient.usual_medication}" %></p>
+    </div>
+    <h2><strong>Visit Info:</strong></h2>
+    <h5><strong>Symptoms:</strong> </h5>
+
     <% if @medical_record.prescribed_medicine? %>
       <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
     <% end %>
-    <% if @medical_record.patient.health_problems? %>
-      <h5><strong>Health Problems:</strong> <%= "#{@medical_record.patient.health_problems}" %></h5>
-    <% end %>
-    <% if @medical_record.patient.family_health_problems? %>
-      <h5><strong>Family Health Problems:</strong> <%= "#{@medical_record.patient.family_health_problems}" %></h5>
-    <% end %>
-    <% if @medical_record.patient.usual_medication? %>
-      <h5><strong>Usual Medication:</strong> <%= "#{@medical_record.patient.usual_medication}" %></h5>
-    <% end %>
-    <h1><strong>Visit Info:</strong></h1>
-    <h5><strong>Symptoms:</strong> </h5>
     <ul>
       <% @medical_record.symptoms.each do |symptom| %>
         <li><%= "#{symptom}" %></li>
