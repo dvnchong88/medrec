@@ -12,7 +12,7 @@ export default class extends Controller {
       imgDiv.style.transform = transformation;
       wrapper.style.height = `${imgDiv.scrollHeight * ratio}px`;
     };
-    // setTimeout(resizeImage, 100);
-    resizeImage()
+    setTimeout(resizeImage, 100);
+    // resizeImage()
   }
 }
