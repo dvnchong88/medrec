@@ -5,11 +5,12 @@ class MedicalRecordsController < ApplicationController
     @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient.id
     @medical_records = policy_scope(MedicalRecord.where(patient: @patient)).order(date: :desc)
     @conditions = Condition.where(patient: @patient)
-
   end
 
   def new
+    @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient.id
     @medical_record = MedicalRecord.new
+    @conditions = Condition.where(patient: @patient)
     @medical_record.patient = Patient.find(params[:patient_id])
     authorize @medical_record
   end

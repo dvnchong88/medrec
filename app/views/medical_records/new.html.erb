@@ -4,7 +4,7 @@
       <div class="col col-sm-8 col-md-6" data-controller="loading-screen">
         <h1 class='text-start' data-loading-screen-target='header'>Medical History Form</h1>
         <%= simple_form_for [@medical_record.patient, @medical_record], html: { data: { loading_screen_target: 'form' } } do |f| %>
-          <%= f.association :condition %>
+          <%= f.association :condition, as: :select, collection: @conditions%>
           <%= f.input :photo_form, input_html: { class: 'd-none', data: { action: 'change->loading-screen#startLoad' } }, label_html: { class: 'upload-photo'}, label: '📷 Upload a form', onchange: 'this.form.submit()'  %>
         <% end %>
       </div>
