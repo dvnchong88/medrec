@@ -5,12 +5,12 @@
     <h1>Medical History</h1>
   <% end %>
   <%# <%= link_to condition_path do  %>
-    <div class="item-drawer">
+    <div class="item-drawer d-flex justify-content-center">
       <%= "General" %>
     </div>
     <%# <% end %>
     <% @conditions.each do |condition| %>
-      <%= render "condition", condition: condition  %>
+      <%= render "condition", condition: condition %>
     <% end %>
   </div>
   <%= link_to "Upload Medical Details", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
