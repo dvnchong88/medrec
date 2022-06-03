@@ -39,16 +39,16 @@ class Ocr
         },
         {
           description: birth_info&.description,
-          text: "#{patient.date_of_birth.year}_______#{patient.date_of_birth.month}________#{patient.date_of_birth.day}",
+          text: "#{patient.date_of_birth.strftime("%Y %B %e")}",
           location: get_location(birth_info),
-          class: "",
-          style: "margin-left: 450px;"
+          class: "mark",
+          style: "margin-left: 300px;"
         },
         {
           description: age_info&.description,
           text:  "#{Time.now.utc.to_date.year - patient.date_of_birth.year - ((Time.now.utc.to_date.month > patient.date_of_birth.month || (Time.now.utc.to_date.month == patient.date_of_birth.month && Time.now.utc.to_date.day >= patient.date_of_birth.day)) ? 0 : 1) }",
           location: get_location(age_info),
-          class: "mark",
+          class: "mark fs-6",
           style: "margin-left: 200px;"
         },
         {
@@ -95,7 +95,7 @@ class Ocr
         },
         {
           description: 'Submit',
-          text: "<input type='submit' class='btn btn-primary' value='Update'>".html_safe,
+          text: "<input type='submit' class='btn btn-primary' id='button-update' value='Update'>".html_safe,
           location: [2300, 3700],
           class: "",
           style: ""

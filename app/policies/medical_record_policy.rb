@@ -11,6 +11,10 @@ class MedicalRecordPolicy < ApplicationPolicy
     true
   end
 
+  def scan?
+    true
+  end
+
   def create?
     record.patient == user.patient || user.user_type == "doctor"
   end

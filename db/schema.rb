@@ -75,12 +75,6 @@ ActiveRecord::Schema.define(version: 2022_06_02_112655) do
     t.index ["patient_id"], name: "index_events_on_patient_id"
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "medical_records", force: :cascade do |t|
     t.bigint "patient_id", null: false
     t.text "diagnosis"

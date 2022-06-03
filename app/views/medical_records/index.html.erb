@@ -4,25 +4,15 @@
   <% else %>
     <h1>Medical History</h1>
   <% end %>
-  <div data-controller="drawer" data-drawer-target="drawer" class="item-drawer">
-    <div class="item-drawer-content" type="chronic">
-      <h2>Chronic Illnesses</h2>
+  <%= link_to general_conditions_path do  %>
+    <div class="item-drawer d-flex justify-content-center">
+      <%= "General" %>
     </div>
-    <div  data-action="click->drawer#open"  class="item-drawer-button" style="font-size:10px;">
-      <i class="fas fa-ellipsis-v"></i>
-    </div>
-    <div class="item-drawer-settings">
-      <a href="<%= chronic_illnesses_medical_records_path %>"><i class="fas fa-folder-open"></i></a>
-      <%# <a href="<%= edit_patient_medical_record_path(@patient, medical_record) %>"><i class="fas fa-pencil-alt"></i></a> %>
-  </div>
+  <% end %>
+  <% @conditions.each do |condition| %>
+    <%= render "condition", condition: condition  %>
+  <% end %>
 </div>
-<%= link_to "New Medical Record", new_patient_medical_record_path(@patient), class:"btn btn-primary mt-3 mb-3" %>
-<%= render @medical_records %>
+<div class="container">
+  <%= link_to "Create New Condition", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
 </div>
-<%# <h3><strong><%= medical_record.date %></strong></h3>
-%>
-<#% if medical_record.symptoms? %>
-  <%# <li><%= medical_record.symptoms[0] %></li>
-%>
-<p><%#= medical_record.symptoms %></p>
-<#% end %>
