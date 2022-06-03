@@ -75,7 +75,7 @@
     <% end %>
     <div data-controller="lightbox">
       <% @medical_record.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 100, width: 100, crop: :fill %>
+        <%= cl_image_tag photo.key, crop: :fill, class:'zoomD unzoom' %>
       <% end %>
     </div>
     <% if @medical_record.doctor_id? %>
@@ -88,7 +88,7 @@
   </div>
   <% if @medical_record.photo_form.attached?%>
     <div class="to-print">
-      <button onclick="window.print();" class="no-print">PRINT</button>
+      <button onclick="window.print();" class="no-print btn btn-primary mb-3">PRINT</button>
       <div data-controller="resize" class="resize-wrapper">
         <div data-resize-target="toResize" class="resize-element">
           <div class="position-relative">
