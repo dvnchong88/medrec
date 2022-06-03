@@ -85,6 +85,9 @@
       <h5>Doctor name: </h5>
       <p><%= "#{@medical_record.doctor_name}" %></p>
     <% end %>
+    <% if current_user.doctor? %>
+      <a href="<%= edit_patient_medical_record_path(@medical_record.patient, @medical_record) %>"><i class="fas fa-pencil-alt fa-1x"></i></a>
+    <% end %>
   </div>
   <% if @medical_record.photo_form.attached?%>
     <div class="to-print">
