@@ -5,8 +5,8 @@
       <div class="item-drawer-content">
         <h5><%= medical_record.date %></h5>
         <p><%= medical_record.doctor_name %></p>
-        <% if medical_record.symptoms? %>
-          <li><%= medical_record.symptoms[0] %></li>
+        <% if medical_record.symptoms[0] == "" %>
+          <li><%= medical_record.symptoms[1] %></li>
         <% end %>
       </div>
       <div  data-action="click->drawer#open"  class="item-drawer-button">

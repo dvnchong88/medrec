@@ -2,6 +2,11 @@
   <div class="item-drawer-content">
     <h5><%= medical_record.date %></h5>
     <p><%= medical_record.doctor_name %></p>
+    <% if medical_record.symptoms[0] == "" %>
+      <li><%= medical_record.symptoms[1] %></li>
+    <% elsif medical_record.symptoms? %>
+      <%= medical_records.symptoms[0] %>
+    <% end %>
   </div>
   <div  data-action="click->drawer#open"  class="item-drawer-button">
     <i class="fas fa-ellipsis-v fa-1x"></i>
