@@ -11,6 +11,6 @@ export default class extends Controller {
       imgDiv.style.transform = transformation;
       wrapper.style.height = `${imgDiv.scrollHeight * ratio}px`;
     };
-      resizeImage();
+    resizeImage();
   }
 }

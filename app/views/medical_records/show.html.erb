@@ -1,4 +1,4 @@
-<div class="container mb-5 pb-5">
+<div class="ocr container">
   <div class="card-category-profile">
     <h1><strong>Patient Info:</strong></h1>
     <h5><strong>Name:</strong> <%= "#{@medical_record.patient.last_name}" %>, <%= "#{@medical_record.patient.first_name}" %></h5>
@@ -50,10 +50,13 @@
       <p><%= "#{@medical_record.doctor_name}" %></p>
     <% end %>
   </div>
+</div>
+<div class="container to-print mb-5 pb-5">
   <% if @medical_record.photo_form.attached?%>
+    <button onclick="window.print();" class="noPrint">PRINT</button>
     <div class="resize-wrapper" data-controller="resize">
       <div class="resize-element">
-        <div style="height: 4032px; width: 3024px; background-image: url(<%= cl_image_path(@medical_record.photo_form.key) %>);background-repeat: no-repeat;" class="position-relative">
+        <div class="position-relative">
           <%= simple_form_for @medical_record do |f| %>
             <% @infos.each do |info| %>
               <div class="position-absolute display-4 text-weight-bold <%= info[:class] %>" style="top: <%= info[:location].last %>px; left: <%= info[:location].first%>px;<%= info[:style] %>">
@@ -62,6 +65,7 @@
             <% end %>
           <% end %>
         </div>
+        <%= cl_image_tag(@medical_record.photo_form.key) %>
       </div>
     </div>
   <% end %>
