@@ -21,4 +21,7 @@ Rails.application.routes.draw do
   get "/map", to: "pages#map", as: "map"
 
   resources :conditions, only: [:show, :new, :create]
+  namespace :general do
+    resources :conditions, only: [:index]
+  end
 end
