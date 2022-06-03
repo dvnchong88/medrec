@@ -1,9 +1,13 @@
 class ConditionPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      if user.patient?
+      scope.where(patient: user.patient)
+      else
+        scope.all
+      end
+    end
   end
 
   def create?
