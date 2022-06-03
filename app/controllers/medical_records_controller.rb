@@ -18,9 +18,12 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
     if @medical_record.photo_form.attached?
       if Rails.env == "development"
-        image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        # image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+
       else
-        image = "https://res.cloudinary.com/dfgn4wbuz/image/upload/v1654146615/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        # image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
       end
       @infos = Ocr.locate_text(image, @medical_record)
     end
