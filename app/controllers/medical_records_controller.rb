@@ -4,6 +4,7 @@ class MedicalRecordsController < ApplicationController
   def index
     @patient = current_user.doctor? ? Patient.find(params[:patient_id]) : current_user.patient.id
     @medical_records = policy_scope(MedicalRecord.where(patient: @patient)).order(date: :desc)
+    @conditions = Condition.all
   end
 
   def new
@@ -18,8 +19,11 @@ class MedicalRecordsController < ApplicationController
     if @medical_record.photo_form.attached?
       if Rails.env == "development"
         image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
-     else
-       image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        # image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/development/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+
+      else
+        image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
+        # image = "https://res.cloudinary.com/dystex7k9/image/upload/v1654167978/production/#{@medical_record.photo_form.key}"#helpers.url_for(@cosmetic.cosmetic_image)
       end
       @infos = Ocr.locate_text(image, @medical_record)
     end
@@ -89,6 +93,12 @@ class MedicalRecordsController < ApplicationController
     authorize @medical_record
     @medical_record.destroy
     redirect_to "medical_records/index", notice: "Are you sure you'd like to delete this record? If deleted, it cannot be restored"
+  end
+
+  def scan
+    @medical_record = MedicalRecord.new
+    @medical_record.patient = Patient.find(params[:patient_id])
+    authorize @medical_record
   end
 
   private
