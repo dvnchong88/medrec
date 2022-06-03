@@ -59,14 +59,14 @@
     </div>
     <h2><strong>Visit Info:</strong></h2>
     <h5><strong>Symptoms:</strong> </h5>
-    <% if @medical_record.prescribed_medicine? %>
-      <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
-    <% end %>
     <ul>
       <% @medical_record.symptoms.each do |symptom| %>
         <li><%= "#{symptom}" %></li>
       <% end %>
     </ul>
+    <% if @medical_record.prescribed_medicine? %>
+      <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
+    <% end %>
     <% if @medical_record.problem_since? %>
       <h5><strong>Since:</strong> <%= "#{@medical_record.problem_since}" %></h5>
     <% end %>
