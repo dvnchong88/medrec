@@ -4,14 +4,16 @@
   <% else %>
     <h1>Medical History</h1>
   <% end %>
-  <%# <%= link_to condition_path do  %>
+  <%= link_to general_conditions_path do  %>
     <div class="item-drawer">
       <%= "General" %>
     </div>
-    <%# <% end %>
-    <% @conditions.each do |condition| %>
-      <%= render "condition", condition: condition  %>
-    <% end %>
-  </div>
-  <%= link_to "Upload Medical Details", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
+  <% end %>
+  <% @conditions.each do |condition| %>
+    <%= render "condition", condition: condition  %>
+  <% end %>
+</div>
+<div class="container">
+  <%= link_to "Create New Condition", new_condition_path, class:"btn btn-primary mt-3 mb-3" %>
+</div>
 </div>
