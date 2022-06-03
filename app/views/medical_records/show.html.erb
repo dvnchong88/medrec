@@ -1,6 +1,5 @@
 <div class="container mb-5 pb-5">
-
-  <div class="card-category-profile">
+  <div class="card-category-profile no-print">
     <div class="d-flex justify-content-between w-100">
       <i class="fas fa-signature"></i>
       <p class="w-75"><%= "#{@medical_record.patient.first_name} #{@medical_record.patient.last_name}" %></p>
@@ -60,7 +59,6 @@
     </div>
     <h2><strong>Visit Info:</strong></h2>
     <h5><strong>Symptoms:</strong> </h5>
-
     <% if @medical_record.prescribed_medicine? %>
       <h5><strong>Prescribed Medicine:</strong> <%= "#{@medical_record.prescribed_medicine}" %></h5>
     <% end %>
